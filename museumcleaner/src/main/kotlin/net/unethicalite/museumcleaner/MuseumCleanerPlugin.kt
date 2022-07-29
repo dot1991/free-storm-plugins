@@ -91,7 +91,6 @@ class MuseumCleanerPlugin : LoopedPlugin() {
                     chinBreakHandler.startBreak(this@MuseumCleanerPlugin)
                 }
                 States.USE_LAMP -> {
-                    NPCs.getNearest { it.interacting == Players.getLocal() }.interact("Attack")
                     val lampInterface: Widget? = Widgets.get(240, 0)
                     val skillName: String = config.xpSkill().getName()
                     val confirmInterface: Widget? = Widgets.get(240, 26)
@@ -147,7 +146,10 @@ class MuseumCleanerPlugin : LoopedPlugin() {
                         sleepUntil({ !Inventory.contains(*cleaned) }, { Players.getLocal().animation != -1  }, 100, 2000)
                     }
                 }
-                else -> { log.info("Bad state reached")}
+                else -> {
+                    log.info("Bad state reached")
+                    return 600
+                }
             }
             return sleepDelay().toInt()
         }
