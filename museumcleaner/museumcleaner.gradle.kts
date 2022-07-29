@@ -5,7 +5,7 @@ plugins {
     kotlin("kapt") version "1.3.61"
 }
 
-version = "0.0.3"
+version = "0.0.4"
 project.extra["PluginName"] = "Museum Cleaner" // This is the name that is used in the external plugin manager panel
 project.extra["PluginDescription"] = "An automatic Museum Cleaner" // This is the description that is used in the external plugin manager panel
 

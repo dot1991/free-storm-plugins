@@ -94,7 +94,7 @@ class MuseumCleanerPlugin : LoopedPlugin() {
                     val lampInterface: Widget? = Widgets.get(240, 0)
                     val skillName: String = config.xpSkill().getName()
                     val confirmInterface: Widget? = Widgets.get(240, 26)
-                    if(lampInterface != null){
+                    if(lampInterface != null && lampInterface.isVisible){
                         if(confirmInterface?.getChild(0) != null && confirmInterface.getChild(0).text.contains(skillName)){
                             confirmInterface.interact("Confirm")
                             return sleepDelay().toInt()

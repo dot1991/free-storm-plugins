@@ -6,6 +6,8 @@ import net.runelite.api.*
 import net.runelite.api.coords.WorldPoint
 import net.runelite.api.events.ChatMessage
 import net.runelite.api.events.ConfigButtonClicked
+import net.runelite.api.events.MenuOptionClicked
+import net.runelite.client.chat.ChatColorType
 import net.runelite.client.config.ConfigManager
 import net.runelite.client.eventbus.Subscribe
 import net.runelite.client.plugins.PluginDescriptor
