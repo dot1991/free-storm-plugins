@@ -56,7 +56,7 @@ class MuseumCleanerPlugin : LoopedPlugin() {
     private val runtime: Duration get() = Duration.between(startTime, Instant.now())
 
 
-    var cleaned: IntArray = intArrayOf(11181, 11178, 11177, 11183, 11195, 11179, 11180, 11175)
+    var cleaned: IntArray = intArrayOf(11181, 11178, 11177, 11183, 11195, 11179, 11180, 11175, ItemID.ARROWHEADS)
     var keep: IntArray = intArrayOf(670, 676, 675, 995, 1059, 1061, ItemID.ANTIQUE_LAMP_11189)
     var startPlugin: Boolean = false
     var cleaningArea: WorldArea = WorldArea(WorldPoint(3253, 3442,0), WorldPoint( 3267, 3447,0));
