@@ -7,12 +7,15 @@ import net.runelite.api.events.ConfigButtonClicked
 import net.runelite.client.config.ConfigManager
 import net.runelite.client.eventbus.Subscribe
 import net.runelite.client.plugins.PluginDescriptor
+import net.runelite.client.plugins.bank.BankSearch
 import net.unethicalite.api.commons.Time
 import net.unethicalite.api.entities.NPCs
 import net.unethicalite.api.entities.Players
 import net.unethicalite.api.entities.TileObjects
 import net.unethicalite.api.items.Bank
 import net.unethicalite.api.items.Inventory
+import net.unethicalite.api.movement.Movement
+import net.unethicalite.api.movement.pathfinder.model.BankLocation
 import net.unethicalite.api.plugins.LoopedPlugin
 import net.unethicalite.api.utils.MessageUtils
 import net.unethicalite.api.widgets.Production
@@ -94,7 +97,7 @@ class WoodCutterPlugin : LoopedPlugin() {
                     }
                 }
                 States.DROP_INVENTORY -> {
-                    for(Item in Inventory.getAll { it.id == ItemID.WILLOW_LOGS }){
+                    for(Item in Inventory.getAll { it.id == config.treeType().logId }){
                         Item.interact("Drop")
                         Time.sleep(calculation.getRandomIntBetweenRange(50,100).toLong())
                     }
