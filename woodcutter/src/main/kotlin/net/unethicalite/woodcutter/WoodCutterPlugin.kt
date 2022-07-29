@@ -1,7 +1,9 @@
 package net.unethicalite.woodcutter
 
 import com.google.inject.Provides
+import com.openosrs.client.game.WorldLocation
 import net.runelite.api.*
+import net.runelite.api.coords.WorldPoint
 import net.runelite.api.events.ChatMessage
 import net.runelite.api.events.ConfigButtonClicked
 import net.runelite.client.config.ConfigManager
@@ -50,6 +52,7 @@ class WoodCutterPlugin : LoopedPlugin() {
     lateinit var chinBreakHandler: ReflectBreakHandler
 
     var sleepLength: Long = -1
+    var startLocation: WorldPoint? = null
 
     private var startTime: Instant = Instant.now()
 
@@ -81,16 +84,13 @@ class WoodCutterPlugin : LoopedPlugin() {
         if (!startPlugin || chinBreakHandler.isBreakActive(this)) return 100
 
         with(functions) {
-            if (config.debugger()) MessageUtils.addMessage("Current state: ${getState()}")
-            var local: Player = Players.getLocal()
-
             when(getState()){
                 States.HANDLE_BREAK -> {
                     MessageUtils.addMessage("Attempting to break")
                     chinBreakHandler.startBreak(this@WoodCutterPlugin)
                 }
                 States.CUT_TREE -> {
-                    val tree: TileObject? = TileObjects.getNearest { it.name.equals(config.treeType().tree) && it.distanceTo(Players.getLocal()) < 10 }
+                    val tree: TileObject? = TileObjects.getNearest { it.name.equals(config.treeType().tree) && it.distanceTo(startLocation) < config.radius() }
                     tree?.let {
                         it.interact("Chop down")
                         Time.sleepUntil({Players.getLocal().isAnimating}, 2000)
@@ -110,6 +110,7 @@ class WoodCutterPlugin : LoopedPlugin() {
     private fun reset() {
         sleepLength = -1
         startPlugin = false
+        startLocation = null
     }
 
     @Subscribe
@@ -117,8 +118,12 @@ class WoodCutterPlugin : LoopedPlugin() {
         if (!configButtonClicked.group.equals("WoodCutterConfig", ignoreCase = true) || Static.getClient().gameState != GameState.LOGGED_IN || Players.getLocal() == null) return
         if (configButtonClicked.key.equals("startHelper", ignoreCase = true)) {
             startPlugin = !startPlugin
+            startLocation = Players.getLocal().worldLocation
             MessageUtils.addMessage("Plugin running: $startPlugin")
-            if(startPlugin) chinBreakHandler.startPlugin(this) else chinBreakHandler.stopPlugin(this)
+            if(startPlugin)
+                chinBreakHandler.startPlugin(this)
+            else
+                chinBreakHandler.stopPlugin(this)
         }
     }
 

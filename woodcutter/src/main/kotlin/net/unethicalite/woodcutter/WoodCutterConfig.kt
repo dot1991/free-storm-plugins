@@ -89,28 +89,29 @@ interface WoodCutterConfig : Config {
     fun treeType(): Tree {
         return Tree.WILLOW
     }
+    @ConfigItem(
+        keyName = "radius",
+        name = "Radius",
+        description = "Radius from start location",
+        position = 12,
+        section = treeType
+    )
+    @JvmDefault
+    fun radius(): Int {
+        return 10
+    }
 
     @ConfigItem(
         keyName = "startHelper",
         name = "Start / Stop",
         description = "Press button to start / stop plugin",
-        position = 17
+        position = 20
     )
     @JvmDefault
     fun startButton(): Button? {
         return Button()
     }
 
-    @ConfigItem(
-        position = 1000,
-        keyName = "debugger",
-        name = "Debug text in chatbox",
-        description = "Debugger text",
-    )
-    @JvmDefault
-    fun debugger(): Boolean {
-        return false
-    }
 }
 
 
