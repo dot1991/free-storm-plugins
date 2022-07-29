@@ -3,6 +3,9 @@ rootProject.name = "horipremium"
 include(":vorkathplayer")
 include(":cannonhelper")
 include(":museumcleaner")
+include(":winemaker")
+include(":woodcutter")
+include(":chinbreakhandler")
 
 for (project in rootProject.children) {
     project.apply {

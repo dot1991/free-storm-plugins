@@ -88,7 +88,7 @@ class MuseumCleanerPlugin : LoopedPlugin() {
             when(getState()){
                 States.HANDLE_BREAK -> {
                     MessageUtils.addMessage("Attempting to break")
-                    chinBreakHandler.startPlugin(this@MuseumCleanerPlugin)
+                    chinBreakHandler.startBreak(this@MuseumCleanerPlugin)
                 }
                 States.USE_LAMP -> {
                     NPCs.getNearest { it.interacting == Players.getLocal() }.interact("Attack")
