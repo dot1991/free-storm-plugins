@@ -6,6 +6,7 @@ include(":museumcleaner")
 include(":winemaker")
 include(":woodcutter")
 include(":chinbreakhandler")
+include(":serumnaughtyedition")
 
 for (project in rootProject.children) {
     project.apply {
