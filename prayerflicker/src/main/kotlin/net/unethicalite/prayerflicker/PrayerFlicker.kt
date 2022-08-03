@@ -5,22 +5,14 @@ import net.runelite.api.*
 import net.runelite.api.events.ConfigButtonClicked
 import net.runelite.api.events.GameStateChanged
 import net.runelite.api.events.GameTick
-import net.runelite.api.widgets.Widget
-import net.runelite.api.widgets.WidgetInfo
 import net.runelite.client.config.ConfigManager
 import net.runelite.client.eventbus.Subscribe
 import net.runelite.client.plugins.PluginDescriptor
-import net.unethicalite.api.commons.Time
-import net.unethicalite.api.entities.NPCs
 import net.unethicalite.api.entities.Players
 import net.unethicalite.api.game.Game
-import net.unethicalite.api.game.Worlds
-import net.unethicalite.api.items.Inventory
-import net.unethicalite.api.items.Shop
 import net.unethicalite.api.plugins.LoopedPlugin
 import net.unethicalite.api.utils.MessageUtils
 import net.unethicalite.api.widgets.Prayers
-import net.unethicalite.api.widgets.Widgets
 import net.unethicalite.client.Static
 import net.unethicalite.prayerflicker.util.Calculation
 import net.unethicalite.prayerflicker.util.Functions
@@ -41,9 +33,6 @@ class PrayerFlicker : LoopedPlugin() {
 
     @Inject
     lateinit var config: PrayerFlickerConfig
-
-    @Inject
-    lateinit var functions: Functions
 
     @Inject
     lateinit var calculation: Calculation
