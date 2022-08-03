@@ -7,6 +7,7 @@ import net.runelite.api.events.ConfigButtonClicked
 import net.runelite.client.config.ConfigManager
 import net.runelite.client.eventbus.Subscribe
 import net.runelite.client.plugins.PluginDescriptor
+import net.runelite.client.plugins.questlist.QuestListPlugin
 import net.unethicalite.api.commons.Time
 import net.unethicalite.api.entities.NPCs
 import net.unethicalite.api.entities.Players
@@ -86,7 +87,7 @@ class SerumNaughtyEdition : LoopedPlugin() {
                 MessageUtils.addMessage("Attempting to break")
                 chinBreakHandler.startBreak(this@SerumNaughtyEdition)
             }
-            if(Inventory.contains(ItemID.SERUM_207_3) && !deposited){ //serum 3
+            if(Inventory.contains(if(config.makecompost()) ItemID.SULPHUROUS_FERTILISER else ItemID.SERUM_207_3) && !deposited){ //serum 3
                 if(Bank.isOpen()){
                     Bank.depositInventory()
                     deposited = true
@@ -101,21 +102,27 @@ class SerumNaughtyEdition : LoopedPlugin() {
                 }
             }
 
-            if(!Inventory.contains(ItemID.ASHES) || !Inventory.contains(ItemID.TARROMIN_POTION_UNF)){ //ashes
+            if(!Inventory.contains(if(config.makecompost()) ItemID.COMPOST else ItemID.ASHES) || !Inventory.contains(if(config.makecompost()) ItemID.SALTPETRE else ItemID.TARROMIN_POTION_UNF)){ //if(config.makecompost()) ItemID.COMPOST else ItemID.ASHES
                 if (Bank.isOpen())
                 {
 
-                    if (Bank.contains(ItemID.ASHES) && !Inventory.contains(ItemID.ASHES))
+                    if (Bank.contains(if(config.makecompost()) ItemID.COMPOST else ItemID.ASHES) && !Inventory.contains(if(config.makecompost()) ItemID.COMPOST else ItemID.ASHES))
                     {
-                        Bank.withdraw(ItemID.ASHES, 14, Bank.WithdrawMode.ITEM)
+                        Bank.withdraw(if(config.makecompost()) ItemID.COMPOST else ItemID.ASHES, 14, Bank.WithdrawMode.ITEM)
+                    }else{
+                        startPlugin = false
+                        return -1
                     }
 
-                    if (Bank.contains(ItemID.TARROMIN_POTION_UNF) && !Inventory.contains(ItemID.TARROMIN_POTION_UNF)) //taromin
+                    if (Bank.contains(if(config.makecompost()) ItemID.SALTPETRE else ItemID.TARROMIN_POTION_UNF) && !Inventory.contains(if(config.makecompost()) ItemID.SALTPETRE else ItemID.TARROMIN_POTION_UNF)) //taromin
                     {
-                        Bank.withdraw(ItemID.TARROMIN_POTION_UNF, 14, Bank.WithdrawMode.ITEM)
+                        Bank.withdraw(if(config.makecompost()) ItemID.SALTPETRE else ItemID.TARROMIN_POTION_UNF, 14, Bank.WithdrawMode.ITEM)
 
+                    }else{
+                        startPlugin = false
+                        return -1
                     }
-                    Time.sleepUntil({Inventory.contains(ItemID.ASHES) && Inventory.contains(ItemID.TARROMIN_POTION_UNF)}, 1000)
+                    Time.sleepUntil({Inventory.contains(if(config.makecompost()) ItemID.COMPOST else ItemID.ASHES) && Inventory.contains(if(config.makecompost()) ItemID.SALTPETRE else ItemID.TARROMIN_POTION_UNF)}, 1000)
                     Bank.close()
                 }
                 else
@@ -130,7 +137,7 @@ class SerumNaughtyEdition : LoopedPlugin() {
                     return 10
                 }
             }
-            if(Bank.isOpen() && Inventory.contains(ItemID.ASHES) && Inventory.contains(ItemID.TARROMIN_POTION_UNF)){
+            if(Bank.isOpen() && Inventory.contains(if(config.makecompost()) ItemID.COMPOST else ItemID.ASHES) && Inventory.contains(if(config.makecompost()) ItemID.SALTPETRE else ItemID.TARROMIN_POTION_UNF)){
                 Bank.close()
             }
 

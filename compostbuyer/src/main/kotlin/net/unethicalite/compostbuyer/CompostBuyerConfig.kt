@@ -1,10 +1,9 @@
-package net.unethicalite.serumnaughtyedition
+package net.unethicalite.compostbuyer
 
 import net.runelite.client.config.*
-import java.awt.Checkbox
 
-@ConfigGroup("SerumNaughtyEditionConfig")
-interface SerumNaughtyEditionConfig : Config {
+@ConfigGroup("CompostBuyerConfig")
+interface CompostBuyerConfig : Config {
 
     companion object
     {
@@ -66,17 +65,6 @@ interface SerumNaughtyEditionConfig : Config {
     @JvmDefault
 
     fun sleepWeightedDistribution(): Boolean {
-        return false
-    }
-
-    @ConfigItem(
-        keyName = "serumorcompost",
-        name = "Make compost instead",
-        description = "Make compost instead of serum",
-        position = 19
-    )
-    @JvmDefault
-    fun makecompost(): Boolean {
         return false
     }
 

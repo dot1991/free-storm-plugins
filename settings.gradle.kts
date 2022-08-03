@@ -7,6 +7,8 @@ include(":winemaker")
 include(":woodcutter")
 include(":chinbreakhandler")
 include(":serumnaughtyedition")
+include(":compostbuyer")
+include(":prayerflicker")
 
 for (project in rootProject.children) {
     project.apply {
