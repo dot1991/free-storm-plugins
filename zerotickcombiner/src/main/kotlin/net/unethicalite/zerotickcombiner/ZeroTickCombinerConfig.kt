@@ -1,12 +1,12 @@
-package net.unethicalite.woodcutter
+package net.unethicalite.zerotickcombiner
 
 import net.runelite.client.config.*
-import net.unethicalite.woodcutter.util.Tree
 
-@ConfigGroup("WoodCutterConfig")
-interface WoodCutterConfig : Config {
+@ConfigGroup("ZeroTickCombinerConfig")
+interface ZeroTickCombinerConfig : Config {
 
-    companion object {
+    companion object
+    {
         @ConfigSection(
             name = "Sleep Delays",
             description = "",
@@ -15,15 +15,6 @@ interface WoodCutterConfig : Config {
             closedByDefault = true
         )
         const val sleepDelays: String = "Sleep Delays"
-
-        @ConfigSection(
-            name = "Tree Types",
-            description = "",
-            position = 10,
-            keyName = "treeTypes",
-            closedByDefault = true
-        )
-        const val treeType: String = "Tree Type"
     }
 
 
@@ -78,26 +69,14 @@ interface WoodCutterConfig : Config {
     }
 
     @ConfigItem(
-        keyName = "tree",
-        name = "Tree Type",
-        description = "Choose Tree to cut",
-        position = 11,
-        section = treeType
+        keyName = "serumorcompost",
+        name = "Make compost instead",
+        description = "Make compost instead of serum",
+        position = 19
     )
     @JvmDefault
-    fun treeType(): Tree {
-        return Tree.WILLOW
-    }
-    @ConfigItem(
-        keyName = "radius",
-        name = "Radius",
-        description = "Radius from start location",
-        position = 12,
-        section = treeType
-    )
-    @JvmDefault
-    fun radius(): Int {
-        return 10
+    fun makecompost(): Boolean {
+        return false
     }
 
     @ConfigItem(

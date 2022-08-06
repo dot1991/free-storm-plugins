@@ -1,14 +1,15 @@
-
 rootProject.name = "horipremium"
+
 include(":vorkathplayer")
 include(":cannonhelper")
 include(":museumcleaner")
 include(":winemaker")
 include(":woodcutter")
 include(":chinbreakhandler")
-include(":serumnaughtyedition")
-include(":compostbuyer")
+include(":zerotickcombiner")
 include(":prayerflicker")
+include(":glassblower")
+include(":miner")
 
 for (project in rootProject.children) {
     project.apply {

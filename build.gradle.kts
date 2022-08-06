@@ -1,11 +1,13 @@
+plugins {
+    id("org.jetbrains.kotlin.jvm") version "1.6.10"
+    `java-library`
+}
+
 buildscript {
     repositories {
         gradlePluginPortal()
+        mavenCentral()
     }
-}
-
-plugins {
-    checkstyle
 }
 
 project.extra["GithubUrl"] = "https://github.com/blogans/unethicalite-plugins"
@@ -19,24 +21,43 @@ subprojects {
     project.extra["ProjectSupportUrl"] = ""
     project.extra["PluginLicense"] = "3-Clause BSD License"
 
+    apply<JavaPlugin>()
+    apply(plugin = "java-library")
+    apply(plugin = "kotlin")
+    apply(plugin = "org.jetbrains.kotlin.jvm")
+
     repositories {
-        jcenter {
-            content {
-                excludeGroupByRegex("net\\.unethicalite.*")
+        mavenCentral()
+        mavenLocal()
+
+        maven {
+            url = uri("https://repo.unethicalite.net/releases/")
+            mavenContent {
+                releasesOnly()
             }
         }
-
-        exclusiveContent {
-            forRepository {
-                mavenLocal()
-            }
-            filter {
-                includeGroupByRegex("net\\.unethicalite.*")
+        maven {
+            url = uri("https://repo.unethicalite.net/snapshots/")
+            mavenContent {
+                snapshotsOnly()
             }
         }
     }
 
-    apply<JavaPlugin>()
+    dependencies {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib")
+        annotationProcessor(Libraries.lombok)
+
+        compileOnly("net.unethicalite:runelite-api:${ProjectVersions.unethicaliteVersion}+")
+        compileOnly("net.unethicalite:runelite-client:${ProjectVersions.unethicaliteVersion}+")
+        compileOnly("net.unethicalite.rs:runescape-api:${ProjectVersions.unethicaliteVersion}+")
+        compileOnly("net.unethicalite:http-api:${ProjectVersions.unethicaliteVersion}+")
+
+        compileOnly(Libraries.guice)
+        compileOnly(Libraries.javax)
+        compileOnly(Libraries.lombok)
+        compileOnly(Libraries.pf4j)
+    }
 
     configure<JavaPluginConvention> {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -44,6 +65,14 @@ subprojects {
     }
 
     tasks {
+        compileKotlin {
+            kotlinOptions {
+                jvmTarget = "11"
+                freeCompilerArgs = listOf("-Xjvm-default=enable")
+            }
+            sourceCompatibility = "11"
+        }
+
         withType<JavaCompile> {
             options.encoding = "UTF-8"
         }
@@ -72,5 +101,6 @@ subprojects {
             into("./build/deps/")
             from(configurations["runtimeClasspath"])
         }
+
     }
 }

@@ -26,7 +26,7 @@
 object ProjectVersions {
     const val openosrsVersion = "1.0.2"
     const val apiVersion = "^1.0.0"
-    const val unethicaliteVersion = "1.0.7"
+    const val unethicaliteVersion = "1.0.6"
 }
 
 object Libraries {

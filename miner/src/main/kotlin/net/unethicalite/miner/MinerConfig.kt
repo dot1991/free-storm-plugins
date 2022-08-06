@@ -1,10 +1,10 @@
-package net.unethicalite.woodcutter
+package net.unethicalite.miner
 
 import net.runelite.client.config.*
-import net.unethicalite.woodcutter.util.Tree
+import net.unethicalite.miner.util.Rock
 
-@ConfigGroup("WoodCutterConfig")
-interface WoodCutterConfig : Config {
+@ConfigGroup("MinerConfig")
+interface MinerConfig : Config {
 
     companion object {
         @ConfigSection(
@@ -17,13 +17,13 @@ interface WoodCutterConfig : Config {
         const val sleepDelays: String = "Sleep Delays"
 
         @ConfigSection(
-            name = "Tree Types",
+            name = "Rock Types",
             description = "",
             position = 10,
-            keyName = "treeTypes",
+            keyName = "rockTypes",
             closedByDefault = true
         )
-        const val treeType: String = "Tree Type"
+        const val rockType: String = "Rock Type"
     }
 
 
@@ -82,22 +82,22 @@ interface WoodCutterConfig : Config {
         name = "Tree Type",
         description = "Choose Tree to cut",
         position = 11,
-        section = treeType
+        section = rockType
     )
     @JvmDefault
-    fun treeType(): Tree {
-        return Tree.WILLOW
+    fun rockType(): Rock {
+        return Rock.IRON
     }
     @ConfigItem(
         keyName = "radius",
         name = "Radius",
         description = "Radius from start location",
         position = 12,
-        section = treeType
+        section = rockType
     )
     @JvmDefault
     fun radius(): Int {
-        return 10
+        return 2
     }
 
     @ConfigItem(

@@ -1,10 +1,10 @@
-package net.unethicalite.woodcutter
+package net.unethicalite.glassblower
 
 import net.runelite.client.config.*
-import net.unethicalite.woodcutter.util.Tree
+import net.unethicalite.glassblower.util.Product
 
-@ConfigGroup("WoodCutterConfig")
-interface WoodCutterConfig : Config {
+@ConfigGroup("GlassBlowerConfig")
+interface GlassBlowerConfig : Config {
 
     companion object {
         @ConfigSection(
@@ -17,13 +17,13 @@ interface WoodCutterConfig : Config {
         const val sleepDelays: String = "Sleep Delays"
 
         @ConfigSection(
-            name = "Tree Types",
+            name = "Glass Types",
             description = "",
             position = 10,
-            keyName = "treeTypes",
+            keyName = "glassTypes",
             closedByDefault = true
         )
-        const val treeType: String = "Tree Type"
+        const val glassType: String = "Glass Type"
     }
 
 
@@ -82,22 +82,11 @@ interface WoodCutterConfig : Config {
         name = "Tree Type",
         description = "Choose Tree to cut",
         position = 11,
-        section = treeType
+        section = glassType
     )
     @JvmDefault
-    fun treeType(): Tree {
-        return Tree.WILLOW
-    }
-    @ConfigItem(
-        keyName = "radius",
-        name = "Radius",
-        description = "Radius from start location",
-        position = 12,
-        section = treeType
-    )
-    @JvmDefault
-    fun radius(): Int {
-        return 10
+    fun productType(): Product {
+        return Product.HIGHEST_POSSIBLE
     }
 
     @ConfigItem(
