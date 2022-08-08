@@ -12,6 +12,7 @@ include(":glassblower")
 include(":miner")
 include(":gemcutter")
 include(":fruitstaller")
+include(":thief")
 
 for (project in rootProject.children) {
     project.apply {
