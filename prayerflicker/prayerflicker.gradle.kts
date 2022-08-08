@@ -1,4 +1,4 @@
-version = "0.0.5"
+version = "0.0.6"
 project.extra["PluginName"] = "Prayer Flicker" // This is the name that is used in the external plugin manager panel
 project.extra["PluginDescription"] = "An automatic prayer flicker" // This is the description that is used in the external plugin manager panel
 

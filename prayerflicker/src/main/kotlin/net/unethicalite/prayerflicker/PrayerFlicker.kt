@@ -51,8 +51,6 @@ class PrayerFlicker : LoopedPlugin() {
 
     var startPlugin: Boolean = false
 
-    var shouldhop: Boolean = false
-
     companion object : Log()
 
     @Provides
@@ -80,7 +78,7 @@ class PrayerFlicker : LoopedPlugin() {
 
     @Subscribe
     private fun onGameTick(gameTick: GameTick){
-        if (!startPlugin || !Game.isLoggedIn()) return
+        if (!startPlugin || chinBreakHandler.isBreakActive(this)) return
 
         if (Prayers.isQuickPrayerEnabled())
         {
@@ -94,31 +92,21 @@ class PrayerFlicker : LoopedPlugin() {
         startPlugin = false
     }
 
-    @Subscribe
-    private fun onGameStateChanged(gameStateChanged: GameStateChanged){
-        if(gameStateChanged.gameState == GameState.HOPPING){
-            shouldhop = false
-        }
-    }
-    @Subscribe
-    private fun onConfigButtonPressed(configButtonClicked: ConfigButtonClicked) {
-        if (!configButtonClicked.group.equals("PrayerFlickerConfig", ignoreCase = true) || Static.getClient().gameState != GameState.LOGGED_IN || Players.getLocal() == null) return
-        if (configButtonClicked.key.equals("startHelper", ignoreCase = true)) {
-            startPlugin = !startPlugin
-            MessageUtils.addMessage("Plugin running: $startPlugin")
-            if(startPlugin)
-                chinBreakHandler.startPlugin(this)
-            else
-                chinBreakHandler.stopPlugin(this)
-        }
-    }
-
     val hotkeyListener: HotkeyListener = object : HotkeyListener(
         Supplier { config.toggleKeyBind() }) {
         override fun hotkeyPressed() {
             startPlugin = !startPlugin
-            if (!startPlugin)
+            if(startPlugin)
             {
+                if (config.enableBreaks()) chinBreakHandler.startPlugin(this@PrayerFlicker)
+                if (!Prayers.isQuickPrayerEnabled())
+                {
+                    Prayers.toggleQuickPrayer(true)
+                }
+            }
+            else
+            {
+                if (config.enableBreaks()) chinBreakHandler.stopPlugin(this@PrayerFlicker)
                 if (Prayers.isQuickPrayerEnabled())
                 {
                     Prayers.toggleQuickPrayer(false)

@@ -90,14 +90,15 @@ interface PrayerFlickerConfig : Config {
     }
 
     @ConfigItem(
-        keyName = "startHelper",
-        name = "Start / Stop",
-        description = "Press button to start / stop plugin",
-        position = 30
+        keyName = "useBreaks",
+        name = "Use Break handler",
+        description = "Enables the use of chin break handler - The only purpose of this is to stop tabs from switching on start",
+        position = 22,
+        section = configuration
     )
     @JvmDefault
-    fun startButton(): Button? {
-        return Button()
+    fun enableBreaks(): Boolean {
+        return false
     }
 
 }
