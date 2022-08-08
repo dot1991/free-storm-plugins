@@ -109,9 +109,12 @@ class MuseumCleanerPlugin : LoopedPlugin() {
                 }
                 States.WEAR_BOOTS -> {
                     Inventory.getFirst { it.name.contains("Leather boots") }.interact("Wear")
+                    return sleepDelay().toInt()
+
                 }
                 States.WEAR_GLOVES -> {
                     Inventory.getFirst { it.name.contains("Leather gloves") }.interact("Wear")
+                    return sleepDelay().toInt()
                 }
                 States.GET_TOOLS -> {
                     val wall: TileObject? = TileObjects.getNearest("Tools")
@@ -120,17 +123,20 @@ class MuseumCleanerPlugin : LoopedPlugin() {
                     }else{
                         Dialog.chooseOption("Yes")
                     }
+                    return sleepDelay().toInt()
+
                 }
                 States.DROP_TRASH -> {
                     for (Item in Inventory.getAll { !cleaned.contains(it.id) && !keep.contains(it.id)}){
                         Item.interact("Drop")
-                        Time.sleep(150)
+                        Time.sleep(sleepDelay())
                     }
                 }
                 States.GET_FINDS -> {
                     if(Players.getLocal().animation != 827 && !Inventory.isFull()) {
                         TileObjects.getFirstAt(3263, 3446, 0, "Dig Site specimen rocks")?.interact("Take")
                     }
+
                 }
                 States.CLEAN_FIND -> {
                     val table: TileObject? = TileObjects.getNearest(24556)

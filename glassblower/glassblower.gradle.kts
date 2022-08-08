@@ -1,4 +1,4 @@
-version = "0.0.1"
+version = "0.0.2"
 project.extra["PluginName"] = "Glass blower" // This is the name that is used in the external plugin manager panel
 project.extra["PluginDescription"] = "An automatic glass blower" // This is the description that is used in the external plugin manager panel
 

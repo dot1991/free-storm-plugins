@@ -1,34 +1,34 @@
-package net.unethicalite.prayerflicker
+package net.unethicalite.gemcutter
 
 import net.runelite.client.config.*
+import net.unethicalite.gemcutter.util.Product
 
-@ConfigGroup("PrayerFlickerConfig")
-interface PrayerFlickerConfig : Config {
+@ConfigGroup("GemCutterConfig")
+interface GemCutterConfig : Config {
 
-    companion object
-    {
+    companion object {
         @ConfigSection(
             name = "Sleep Delays",
             description = "",
-            position = 2,
+            position = 3,
             keyName = "sleepDelays",
             closedByDefault = true
         )
         const val sleepDelays: String = "Sleep Delays"
 
         @ConfigSection(
-            name = "Configuration",
+            name = "Gem Types",
             description = "",
-            position = 20,
-            keyName = "configuration",
-            closedByDefault = false
+            position = 10,
+            keyName = "gemTypes",
+            closedByDefault = true
         )
-        const val configuration: String = "Configuration"
+        const val gemType: String = "Gem Type"
     }
 
 
     @Range(min = 0, max = 160)
-    @ConfigItem(keyName = "sleepMin", name = "Sleep Min", description = "", position = 3, section = sleepDelays)
+    @ConfigItem(keyName = "sleepMin", name = "Sleep Min", description = "", position = 4, section = sleepDelays)
     @JvmDefault
 
     fun sleepMin(): Int {
@@ -36,7 +36,7 @@ interface PrayerFlickerConfig : Config {
     }
 
     @Range(min = 0, max = 160)
-    @ConfigItem(keyName = "sleepMax", name = "Sleep Max", description = "", position = 4, section = sleepDelays)
+    @ConfigItem(keyName = "sleepMax", name = "Sleep Max", description = "", position = 5, section = sleepDelays)
     @JvmDefault
 
     fun sleepMax(): Int {
@@ -44,7 +44,7 @@ interface PrayerFlickerConfig : Config {
     }
 
     @Range(min = 0, max = 160)
-    @ConfigItem(keyName = "sleepTarget", name = "Sleep Target", description = "", position = 5, section = sleepDelays)
+    @ConfigItem(keyName = "sleepTarget", name = "Sleep Target", description = "", position = 6, section = sleepDelays)
     @JvmDefault
 
     fun sleepTarget(): Int {
@@ -56,7 +56,7 @@ interface PrayerFlickerConfig : Config {
         keyName = "sleepDeviation",
         name = "Sleep Deviation",
         description = "",
-        position = 6,
+        position = 7,
         section = sleepDelays
     )
     @JvmDefault
@@ -68,32 +68,32 @@ interface PrayerFlickerConfig : Config {
         keyName = "sleepWeightedDistribution",
         name = "Sleep Weighted Distribution",
         description = "Shifts the random distribution towards the lower end at the target, otherwise it will be an even distribution",
-        position = 7,
+        position = 8,
         section = sleepDelays
     )
     @JvmDefault
+
     fun sleepWeightedDistribution(): Boolean {
         return false
     }
 
-
     @ConfigItem(
-        keyName = "toggleKeyBind",
-        name = "Start/Stop hotkey",
-        description = "Hotkey to start/stop the prayer flicker",
-        position = 21,
-        section = configuration
+        keyName = "gem",
+        name = "Gem Type",
+        description = "Choose Gem to cut",
+        position = 11,
+        section = gemType
     )
     @JvmDefault
-    fun toggleKeyBind(): Keybind? {
-        return Keybind.NOT_SET
+    fun productType(): Product {
+        return Product.DIAMOND
     }
 
     @ConfigItem(
         keyName = "startHelper",
         name = "Start / Stop",
         description = "Press button to start / stop plugin",
-        position = 30
+        position = 20
     )
     @JvmDefault
     fun startButton(): Button? {

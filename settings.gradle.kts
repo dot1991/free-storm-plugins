@@ -10,6 +10,8 @@ include(":zerotickcombiner")
 include(":prayerflicker")
 include(":glassblower")
 include(":miner")
+include(":gemcutter")
+include(":fruitstaller")
 
 for (project in rootProject.children) {
     project.apply {

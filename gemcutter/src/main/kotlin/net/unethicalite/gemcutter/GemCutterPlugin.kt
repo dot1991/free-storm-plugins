@@ -1,8 +1,7 @@
-package net.unethicalite.glassblower
+package net.unethicalite.gemcutter
 
 import com.google.inject.Provides
 import net.runelite.api.*
-import net.runelite.api.coords.WorldPoint
 import net.runelite.api.events.ConfigButtonClicked
 import net.runelite.client.config.ConfigManager
 import net.runelite.client.eventbus.Subscribe
@@ -10,16 +9,14 @@ import net.runelite.client.plugins.PluginDescriptor
 import net.unethicalite.api.commons.Time
 import net.unethicalite.api.entities.NPCs
 import net.unethicalite.api.entities.Players
-import net.unethicalite.api.entities.TileObjects
 import net.unethicalite.api.items.Bank
 import net.unethicalite.api.items.Inventory
-import net.unethicalite.api.movement.pathfinder.model.BankLocation
 import net.unethicalite.api.plugins.LoopedPlugin
 import net.unethicalite.api.utils.MessageUtils
 import net.unethicalite.api.widgets.Dialog
 import net.unethicalite.api.widgets.Production
 import net.unethicalite.client.Static
-import net.unethicalite.glassblower.util.*
+import net.unethicalite.gemcutter.util.*
 import org.pf4j.Extension
 import java.time.Duration
 import java.time.Instant
@@ -27,14 +24,14 @@ import javax.inject.Inject
 
 @Extension
 @PluginDescriptor(
-    name = "Glass Blower",
-    description = "Automatic glass blower",
-    tags = ["glass"]
+    name = "Gem cutter",
+    description = "Automatic gem cutter",
+    tags = ["gem"]
 )
-class GlassBlowerPlugin : LoopedPlugin() {
+class GemCutterPlugin : LoopedPlugin() {
 
     @Inject
-    lateinit var config: GlassBlowerConfig
+    lateinit var config: GemCutterConfig
 
     @Inject
     lateinit var functions: Functions
@@ -56,8 +53,8 @@ class GlassBlowerPlugin : LoopedPlugin() {
     companion object : Log()
 
     @Provides
-    fun provideConfig(configManager: ConfigManager): GlassBlowerConfig {
-        return configManager.getConfig(GlassBlowerConfig::class.java)
+    fun provideConfig(configManager: ConfigManager): GemCutterConfig {
+        return configManager.getConfig(GemCutterConfig::class.java)
     }
 
 
@@ -80,21 +77,26 @@ class GlassBlowerPlugin : LoopedPlugin() {
             when(getState()){
                 States.HANDLE_BREAK -> {
                     MessageUtils.addMessage("Attempting to break")
-                    chinBreakHandler.startBreak(this@GlassBlowerPlugin)
+                    chinBreakHandler.startBreak(this@GemCutterPlugin)
                 }
                 States.HANDLE_BANK -> {
                     if (Bank.isOpen())
                     {
-                        if (Inventory.contains{it.id != ItemID.GLASSBLOWING_PIPE && it.id != ItemID.MOLTEN_GLASS})
+                        if (!Bank.contains { it.id == config.productType().itemID })
                         {
-                            Bank.depositInventory()
+                            startPlugin = false
+                            return -1
+                        }
+                        if (Inventory.contains{it.id != ItemID.CHISEL && it.id != config.productType().itemID})
+                        {
+                            Bank.depositAllExcept { it.id == ItemID.CHISEL || it.id == config.productType().itemID  }
                             return sleepDelay().toInt()
                         }
-                        if (!Inventory.contains(ItemID.GLASSBLOWING_PIPE))
+                        if (!Inventory.contains(ItemID.CHISEL))
                         {
-                            if (Bank.contains(ItemID.GLASSBLOWING_PIPE))
+                            if (Bank.contains(ItemID.CHISEL))
                             {
-                                Bank.withdraw(ItemID.GLASSBLOWING_PIPE, 1, Bank.WithdrawMode.ITEM)
+                                Bank.withdraw(ItemID.CHISEL, 1, Bank.WithdrawMode.ITEM)
                             }
                             else
                             {
@@ -103,18 +105,20 @@ class GlassBlowerPlugin : LoopedPlugin() {
                             }
                             return sleepDelay().toInt()
                         }
-                        if (!Inventory.contains(ItemID.MOLTEN_GLASS))
+                        if (!Inventory.contains(config.productType().itemID))
                         {
-                            if (Bank.contains(ItemID.MOLTEN_GLASS))
+                            if (Bank.contains(config.productType().itemID))
                             {
-                                Bank.withdraw(ItemID.MOLTEN_GLASS, 27, Bank.WithdrawMode.ITEM)
-
+                                Bank.withdraw(config.productType().itemID, 27, Bank.WithdrawMode.ITEM)
+                                Bank.close()
+                                Time.sleepUntil({Inventory.contains(config.productType().itemID)}, 1500)
                             }
                             else
                             {
                                 startPlugin = false
                                 return -1
                             }
+                            return sleepDelay().toInt()
                         }
                     }
                     else
@@ -124,22 +128,22 @@ class GlassBlowerPlugin : LoopedPlugin() {
                         Time.sleepUntil({Bank.isOpen()}, 2500)
                     }
                 }
-                States.BLOW_GLASS -> {
+                States.CUT_GEM -> {
                     Dialog.close()
                     if (Production.isOpen())
                     {
-                        Production.chooseOption(if(config.productType() == Product.HIGHEST_POSSIBLE && Product.getHighest() != null) Product.getHighest()!!.keyValue else config.productType().keyValue)
+                        Production.chooseOption(1)
                         Time.sleep(sleepDelay())
-                        Time.sleepUntil({!Inventory.contains(ItemID.MOLTEN_GLASS) || (Dialog.isOpen())}, {Players.getLocal().animation != -1}, 5000)
+                        Time.sleepUntil({!Inventory.contains(config.productType().itemID) || (Dialog.isOpen())}, {Players.getLocal().animation != -1}, 5000)
                     }
                     else
                     {
-                        var glass: Item? = Inventory.getFirst(ItemID.MOLTEN_GLASS)
-                        var pipe: Item? = Inventory.getFirst(ItemID.GLASSBLOWING_PIPE)
+                        var gem: Item? = Inventory.getFirst(config.productType().itemID)
+                        var chisel: Item? = Inventory.getFirst(ItemID.CHISEL)
 
-                        if (glass != null && pipe != null)
+                        if (gem != null && chisel != null)
                         {
-                            glass.useOn(pipe)
+                            gem.useOn(chisel)
                             Time.sleepUntil({Production.isOpen()}, 2500)
                         }
                     }
@@ -160,7 +164,7 @@ class GlassBlowerPlugin : LoopedPlugin() {
 
     @Subscribe
     private fun onConfigButtonPressed(configButtonClicked: ConfigButtonClicked) {
-        if (!configButtonClicked.group.equals("GlassBlowerConfig", ignoreCase = true) || Static.getClient().gameState != GameState.LOGGED_IN || Players.getLocal() == null) return
+        if (!configButtonClicked.group.equals("GemCutterConfig", ignoreCase = true) || Static.getClient().gameState != GameState.LOGGED_IN || Players.getLocal() == null) return
         if (configButtonClicked.key.equals("startHelper", ignoreCase = true)) {
             startPlugin = !startPlugin
             MessageUtils.addMessage("Plugin running: $startPlugin")

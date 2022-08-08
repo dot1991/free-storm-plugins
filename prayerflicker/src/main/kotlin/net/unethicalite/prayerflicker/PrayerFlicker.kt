@@ -2,25 +2,28 @@ package net.unethicalite.prayerflicker
 
 import com.google.inject.Provides
 import net.runelite.api.*
+import net.runelite.api.coords.WorldPoint
 import net.runelite.api.events.ConfigButtonClicked
 import net.runelite.api.events.GameStateChanged
 import net.runelite.api.events.GameTick
 import net.runelite.client.config.ConfigManager
 import net.runelite.client.eventbus.Subscribe
 import net.runelite.client.plugins.PluginDescriptor
+import net.runelite.client.util.HotkeyListener
 import net.unethicalite.api.entities.Players
 import net.unethicalite.api.game.Game
+import net.unethicalite.api.movement.pathfinder.Walker
 import net.unethicalite.api.plugins.LoopedPlugin
 import net.unethicalite.api.utils.MessageUtils
 import net.unethicalite.api.widgets.Prayers
 import net.unethicalite.client.Static
 import net.unethicalite.prayerflicker.util.Calculation
-import net.unethicalite.prayerflicker.util.Functions
 import net.unethicalite.prayerflicker.util.Log
 import net.unethicalite.prayerflicker.util.ReflectBreakHandler
 import org.pf4j.Extension
 import java.time.Duration
 import java.time.Instant
+import java.util.function.Supplier
 import javax.inject.Inject
 
 @Extension
@@ -57,16 +60,17 @@ class PrayerFlicker : LoopedPlugin() {
         return configManager.getConfig(PrayerFlickerConfig::class.java)
     }
 
-
     override fun startUp() {
         log.info("${this::class.simpleName} started at $startTime")
         chinBreakHandler.registerPlugin(this)
+        Static.getKeyManager().registerKeyListener(hotkeyListener)
         reset()
     }
 
     override fun shutDown() {
         log.info("${this::class.simpleName} stopped at ${Instant.now()} with runtime $runtime")
         chinBreakHandler.unregisterPlugin(this)
+        Static.getKeyManager().unregisterKeyListener(hotkeyListener)
         reset()
     }
 
@@ -106,6 +110,20 @@ class PrayerFlicker : LoopedPlugin() {
                 chinBreakHandler.startPlugin(this)
             else
                 chinBreakHandler.stopPlugin(this)
+        }
+    }
+
+    val hotkeyListener: HotkeyListener = object : HotkeyListener(
+        Supplier { config.toggleKeyBind() }) {
+        override fun hotkeyPressed() {
+            startPlugin = !startPlugin
+            if (!startPlugin)
+            {
+                if (Prayers.isQuickPrayerEnabled())
+                {
+                    Prayers.toggleQuickPrayer(false)
+                }
+            }
         }
     }
 

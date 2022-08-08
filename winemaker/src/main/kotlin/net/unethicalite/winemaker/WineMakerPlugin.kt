@@ -109,7 +109,11 @@ class WineMakerPlugin : LoopedPlugin() {
                 }else{
                     if (Bank.contains(ItemID.GRAPES)) {
                         Bank.withdraw(ItemID.GRAPES, 14, Bank.WithdrawMode.ITEM)
-                        //Time.sleepUntil({ Inventory.contains(ItemID.GRAPES) }, 500)
+                    }
+                    else
+                    {
+                        startPlugin = false
+                        return -1
                     }
                 }
             }
@@ -123,6 +127,11 @@ class WineMakerPlugin : LoopedPlugin() {
                 }else{
                     if (Bank.contains(ItemID.JUG_OF_WATER)) {
                         Bank.withdraw(ItemID.JUG_OF_WATER, 14, Bank.WithdrawMode.ITEM)
+                    }
+                    else
+                    {
+                        startPlugin = false
+                        return -1
                     }
                 }
                 Bank.close()

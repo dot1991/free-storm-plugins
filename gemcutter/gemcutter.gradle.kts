@@ -1,6 +1,6 @@
-version = "0.0.5"
-project.extra["PluginName"] = "Prayer Flicker" // This is the name that is used in the external plugin manager panel
-project.extra["PluginDescription"] = "An automatic prayer flicker" // This is the description that is used in the external plugin manager panel
+version = "0.0.2"
+project.extra["PluginName"] = "Gem cutterr" // This is the name that is used in the external plugin manager panel
+project.extra["PluginDescription"] = "An automatic gem cutter" // This is the description that is used in the external plugin manager panel
 
 plugins{
     kotlin("kapt")
