@@ -14,6 +14,7 @@ import net.unethicalite.api.entities.TileObjects
 import net.unethicalite.api.items.Bank
 import net.unethicalite.api.items.Inventory
 import net.unethicalite.api.movement.pathfinder.model.BankLocation
+import net.unethicalite.api.packets.WidgetPackets
 import net.unethicalite.api.plugins.LoopedPlugin
 import net.unethicalite.api.utils.MessageUtils
 import net.unethicalite.api.widgets.Dialog
@@ -77,6 +78,7 @@ class GlassBlowerPlugin : LoopedPlugin() {
         if (!startPlugin || chinBreakHandler.isBreakActive(this)) return 100
 
         with(functions) {
+            MessageUtils.addMessage(getState().name)
             when(getState()){
                 States.HANDLE_BREAK -> {
                     MessageUtils.addMessage("Attempting to break")
@@ -129,7 +131,7 @@ class GlassBlowerPlugin : LoopedPlugin() {
                     if (Production.isOpen())
                     {
                         Production.chooseOption(if(config.productType() == Product.HIGHEST_POSSIBLE && Product.getHighest() != null) Product.getHighest()!!.keyValue else config.productType().keyValue)
-                        Time.sleep(sleepDelay())
+                        Time.sleep(5000)
                         Time.sleepUntil({!Inventory.contains(ItemID.MOLTEN_GLASS) || (Dialog.isOpen())}, {Players.getLocal().animation != -1}, 5000)
                     }
                     else

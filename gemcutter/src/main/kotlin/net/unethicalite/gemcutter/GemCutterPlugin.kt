@@ -74,6 +74,8 @@ class GemCutterPlugin : LoopedPlugin() {
         if (!startPlugin || chinBreakHandler.isBreakActive(this)) return 100
 
         with(functions) {
+            MessageUtils.addMessage(getState().name)
+
             when(getState()){
                 States.HANDLE_BREAK -> {
                     MessageUtils.addMessage("Attempting to break")
@@ -130,10 +132,13 @@ class GemCutterPlugin : LoopedPlugin() {
                 }
                 States.CUT_GEM -> {
                     Dialog.close()
+                    MessageUtils.addMessage("here")
                     if (Production.isOpen())
                     {
+                        MessageUtils.addMessage("here1")
+
                         Production.chooseOption(1)
-                        Time.sleep(sleepDelay())
+                        Time.sleep(5000)
                         Time.sleepUntil({!Inventory.contains(config.productType().itemID) || (Dialog.isOpen())}, {Players.getLocal().animation != -1}, 5000)
                     }
                     else
@@ -141,15 +146,19 @@ class GemCutterPlugin : LoopedPlugin() {
                         var gem: Item? = Inventory.getFirst(config.productType().itemID)
                         var chisel: Item? = Inventory.getFirst(ItemID.CHISEL)
 
+                        MessageUtils.addMessage("here2")
+
                         if (gem != null && chisel != null)
                         {
+                            MessageUtils.addMessage("here3")
+
                             gem.useOn(chisel)
                             Time.sleepUntil({Production.isOpen()}, 2500)
                         }
                     }
                 }
                 States.UNKNOWN -> {
-                    //MessageUtils.addMessage("Reached unknown")
+                    MessageUtils.addMessage("Reached unknown")
                 }
 
             }
