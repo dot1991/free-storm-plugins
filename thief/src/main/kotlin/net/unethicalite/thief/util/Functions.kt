@@ -3,11 +3,14 @@ package net.unethicalite.thief.util
 import net.runelite.api.Client
 import net.runelite.api.ItemID
 import net.runelite.api.Skill
+import net.runelite.api.TileObject
 import net.unethicalite.api.entities.Players
+import net.unethicalite.api.entities.TileObjects
 import net.unethicalite.api.game.Game
 import net.unethicalite.api.items.Bank
 import net.unethicalite.api.items.Equipment
 import net.unethicalite.api.items.Inventory
+import net.unethicalite.api.movement.Movement
 import net.unethicalite.client.Static
 import net.unethicalite.thief.States
 import net.unethicalite.thief.ThiefPlugin
@@ -28,7 +31,7 @@ class Functions {
         return sleepLength
     }
 
-    fun ThiefPlugin.getState(): States {
+    /*fun ThiefPlugin.getState(): States {
         if (!Game.isLoggedIn()) return States.UNKNOWN
 
         if (chinBreakHandler.shouldBreak(this))
@@ -64,5 +67,24 @@ class Functions {
             return States.UNKNOWN
         return States.STEAL
     }
+     */
+
+    fun ThiefPlugin.getState(): States {
+        if (!Game.isLoggedIn()) return States.UNKNOWN
+        if (chinBreakHandler.shouldBreak(this))
+            return States.HANDLE_BREAK
+        if (!Inventory.isFull())
+        {
+            var stall: TileObject? = TileObjects.getNearest(config.stall().normal)
+            if (stall != null)
+                return States.STEAL
+        }
+        if (Inventory.isFull())
+        {
+            return States.DROP
+        }
+        return States.UNKNOWN
+    }
+
 
 }

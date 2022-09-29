@@ -2,6 +2,7 @@ package net.unethicalite.thief
 
 import net.runelite.api.NpcID
 import net.runelite.client.config.*
+import net.unethicalite.thief.util.Stall
 
 @ConfigGroup("ThiefConfig")
 interface ThiefConfig : Config {
@@ -77,7 +78,7 @@ interface ThiefConfig : Config {
         return false
     }
 
-    @ConfigItem(
+    /*@ConfigItem(
         keyName = "npcID",
         name = "NPC ID",
         description = "ID of NPC",
@@ -99,6 +100,18 @@ interface ThiefConfig : Config {
     @JvmDefault
     fun useDodgy(): Boolean {
         return true
+    }
+     */
+    @ConfigItem(
+        keyName = "stall",
+        name = "Stall",
+        description = "Stall to steal from",
+        position = 11
+    )
+    @JvmDefault
+    fun stall(): Stall
+    {
+        return Stall.TEA
     }
 
     @ConfigItem(

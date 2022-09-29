@@ -9,6 +9,7 @@ import net.runelite.client.plugins.PluginDescriptor
 import net.unethicalite.api.commons.Time
 import net.unethicalite.api.entities.NPCs
 import net.unethicalite.api.entities.Players
+import net.unethicalite.api.entities.TileObjects
 import net.unethicalite.api.items.Bank
 import net.unethicalite.api.items.Inventory
 import net.unethicalite.api.plugins.LoopedPlugin
@@ -83,7 +84,32 @@ class ThiefPlugin : LoopedPlugin() {
                     MessageUtils.addMessage("Attempting to break")
                     chinBreakHandler.startBreak(this@ThiefPlugin)
                 }
-                States.HANDLE_BANK -> {
+                States.DROP -> {
+                    if (config.stall().item == -1)
+                    {
+                        for (item in Inventory.getAll()){
+                            item.interact("Drop")
+                            Time.sleep(75)
+                        }
+                    }
+                    else{
+                        for (item in Inventory.getAll { it.id == config.stall().item })
+                        {
+                            item.interact("Drop")
+                            Time.sleep(75)
+                        }
+                    }
+                }
+                States.STEAL -> {
+                    var stall: TileObject? = TileObjects.getNearest { it.id == config.stall().normal && it.distanceTo(Players.getLocal()) <= 2}
+                    if (Players.getLocal().isAnimating)
+                        return -1
+                    stall?.let {
+                        it.interact(config.stall().action)
+                    }
+                    return -2
+                }
+                /*States.HANDLE_BANK -> {
                     if (Bank.isOpen())
                     {
                         if (!Inventory.contains { it.id == ItemID.JUG_OF_WINE } || Inventory.getCount(ItemID.JUG_OF_WINE) < 20)
@@ -142,7 +168,7 @@ class ThiefPlugin : LoopedPlugin() {
                     Inventory.getFirst { "Coin pouch" in it.name }?.interact("Open-all")
                     return -1
                 }
-
+                 */
                 States.UNKNOWN -> {
                     //MessageUtils.addMessage("Reached unknown")
                 }
