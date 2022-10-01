@@ -1,6 +1,6 @@
 rootProject.name = "horipremium"
 
-include(":vorkathplayer")
+
 include(":cannonhelper")
 include(":museumcleaner")
 include(":winemaker")
@@ -11,14 +11,15 @@ include(":prayerflicker")
 include(":glassblower")
 include(":miner")
 include(":gemcutter")
-//include(":fruitstaller")
 include(":thief")
-include(":telealcher")
 include(":wardenoverlay")
-//include(":hunter")
+include(":hunter")
 //include(":gotrfix")
 //include(":cgfix")
-//include(":wintertodt")
+include(":telealcher")
+include(":potdrinker")
+include(":vorkathplayer")
+
 for (project in rootProject.children) {
     project.apply {
         projectDir = file(name)
