@@ -2,10 +2,9 @@ package net.unethicalite.thief
 
 import net.runelite.api.NpcID
 import net.runelite.client.config.*
-import net.unethicalite.thief.util.Stall
 
-@ConfigGroup("ThiefConfig")
-interface ThiefConfig : Config {
+@ConfigGroup("HunterConfig")
+interface HunterConfig : Config {
 
     companion object {
         @ConfigSection(
@@ -78,42 +77,6 @@ interface ThiefConfig : Config {
         return false
     }
 
-    /*@ConfigItem(
-        keyName = "npcID",
-        name = "NPC ID",
-        description = "ID of NPC",
-        position = 11,
-        section = configuration
-    )
-    @JvmDefault
-    fun npcID(): Int {
-        return NpcID.KNIGHT_OF_ARDOUGNE
-    }
-
-    @ConfigItem(
-        keyName = "useDodgy",
-        name = "Use Dodgy necklace",
-        description = "Use dodoge necklaces",
-        position = 12,
-        section = configuration
-    )
-    @JvmDefault
-    fun useDodgy(): Boolean {
-        return true
-    }
-     */
-    @ConfigItem(
-        keyName = "stall",
-        name = "Stall",
-        description = "Stall to steal from",
-        position = 11
-    )
-    @JvmDefault
-    fun stall(): Stall
-    {
-        return Stall.TEA
-    }
-
     @ConfigItem(
         keyName = "startHelper",
         name = "Start / Stop",
@@ -123,17 +86,6 @@ interface ThiefConfig : Config {
     @JvmDefault
     fun startButton(): Button? {
         return Button()
-    }
-
-    @ConfigItem(
-        keyName = "enabledDebug",
-        name = "Debug",
-        description = "Enable state debugging",
-        position = 21
-    )
-    @JvmDefault
-    fun enableDebugging(): Boolean {
-        return false
     }
 
 }

@@ -77,7 +77,7 @@ class ThiefPlugin : LoopedPlugin() {
         if (!startPlugin || chinBreakHandler.isBreakActive(this)) return 100
 
         with(functions) {
-            MessageUtils.addMessage("State: " + getState().name)
+            if (config.enableDebugging()) MessageUtils.addMessage("State: " + getState().name)
 
             when(getState()){
                 States.HANDLE_BREAK -> {
