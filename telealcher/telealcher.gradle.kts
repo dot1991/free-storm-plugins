@@ -1,4 +1,4 @@
-version = "0.0.2"
+version = "0.0.3"
 project.extra["PluginName"] = "Teleport Alcher" // This is the name that is used in the external plugin manager panel
 project.extra["PluginDescription"] = "An automatic teleport alcher" // This is the description that is used in the external plugin manager panel
 

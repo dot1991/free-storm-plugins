@@ -85,7 +85,7 @@ class ThiefPlugin : LoopedPlugin() {
                     chinBreakHandler.startBreak(this@ThiefPlugin)
                 }
                 States.DROP -> {
-                    if (config.stall().item == -1)
+                    if (config.stall().item.any { it == -1 })
                     {
                         for (item in Inventory.getAll()){
                             item.interact("Drop")
@@ -93,7 +93,7 @@ class ThiefPlugin : LoopedPlugin() {
                         }
                     }
                     else{
-                        for (item in Inventory.getAll { it.id == config.stall().item })
+                        for (item in Inventory.getAll { it.id in config.stall().item })
                         {
                             item.interact("Drop")
                             Time.sleep(75)

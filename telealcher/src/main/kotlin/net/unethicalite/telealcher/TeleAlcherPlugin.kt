@@ -77,8 +77,9 @@ class TeleAlcherPlugin : LoopedPlugin() {
         if (!startPlugin || chinBreakHandler.isBreakActive(this)) return 100
 
         with(functions) {
-            MessageUtils.addMessage("State: " + getState().name)
 
+            if (config.enableDebugging())
+                MessageUtils.addMessage("State: " + getState().name)
 
             when(getState()){
                 States.HANDLE_BREAK -> {
@@ -86,20 +87,44 @@ class TeleAlcherPlugin : LoopedPlugin() {
                     chinBreakHandler.startBreak(this@TeleAlcherPlugin)
                 }
                 States.TELE -> {
-                    if (config.teleport() != null && Skills.getLevel(Skill.MAGIC) >= config.teleport()!!.requiredLevel){
-                        Magic.cast(config.teleport()?.teleport)
+                    if (!config.teleport().teleport.haveRunesAvailable())
+                    {
+                        MessageUtils.addMessage("Not enough runes")
+                        reset()
+                        return -1
+                    }
+                    if (Skills.getLevel(Skill.MAGIC) >= config.teleport()!!.requiredLevel){
+                        Magic.cast(config.teleport().teleport)
                     }
                     return -1
                 }
                 States.ALCH -> {
                     val alchItem: Item? = Inventory.getFirst { it.id == config.alchId() }
+                    if (alchItem == null)
+                    {
+                        MessageUtils.addMessage("Out of alch items")
+                        reset()
+                        return -1
+                    }
                     if (Skills.getLevel(Skill.MAGIC) < 55)
                     {
+                        if (!SpellBook.Standard.LOW_LEVEL_ALCHEMY.haveRunesAvailable())
+                        {
+                            MessageUtils.addMessage("Not enough runes")
+                            reset()
+                            return -1
+                        }
                         Magic.cast(SpellBook.Standard.LOW_LEVEL_ALCHEMY, alchItem)
 
                     }
                     else
                     {
+                        if (!SpellBook.Standard.HIGH_LEVEL_ALCHEMY.haveRunesAvailable())
+                        {
+                            MessageUtils.addMessage("Not enough runes")
+                            reset()
+                            return -1
+                        }
                         Magic.cast(SpellBook.Standard.HIGH_LEVEL_ALCHEMY, alchItem)
                     }
                     return 300
@@ -115,6 +140,7 @@ class TeleAlcherPlugin : LoopedPlugin() {
     private fun reset() {
         sleepLength = -1
         startPlugin = false
+        chinBreakHandler.stopPlugin(this)
     }
 
     @Subscribe

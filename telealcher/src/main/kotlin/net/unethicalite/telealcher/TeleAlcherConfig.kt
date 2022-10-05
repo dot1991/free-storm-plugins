@@ -77,7 +77,7 @@ interface TeleAlcherConfig : Config {
         position = 12
     )
     @JvmDefault
-    fun teleport(): Teleport? {
+    fun teleport(): Teleport {
         return Teleport.CAMELOT
     }
 
@@ -112,6 +112,17 @@ interface TeleAlcherConfig : Config {
     @JvmDefault
     fun startButton(): Button? {
         return Button()
+    }
+
+    @ConfigItem(
+        keyName = "enabledDebug",
+        name = "Debug",
+        description = "Enable state debugging",
+        position = 21
+    )
+    @JvmDefault
+    fun enableDebugging(): Boolean {
+        return false
     }
 
 }

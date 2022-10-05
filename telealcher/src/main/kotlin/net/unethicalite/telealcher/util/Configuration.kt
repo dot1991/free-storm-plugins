@@ -8,7 +8,7 @@ import net.unethicalite.api.magic.Spell
 import net.unethicalite.api.magic.SpellBook
 
 @Getter
-enum class Teleport(val teleport: Spell, val requiredLevel: Int) {
+enum class Teleport(val teleport: SpellBook.Standard, val requiredLevel: Int) {
     VARROCK(SpellBook.Standard.VARROCK_TELEPORT, 25),
     LUMBRIDGE(SpellBook.Standard.LUMBRIDGE_TELEPORT, 31),
     FALADOR(SpellBook.Standard.FALADOR_TELEPORT, 37),
