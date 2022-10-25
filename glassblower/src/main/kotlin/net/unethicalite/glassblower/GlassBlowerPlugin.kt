@@ -90,7 +90,7 @@ class GlassBlowerPlugin : LoopedPlugin() {
                         if (Inventory.contains{it.id != ItemID.GLASSBLOWING_PIPE && it.id != ItemID.MOLTEN_GLASS})
                         {
                             Bank.depositInventory()
-                            return sleepDelay().toInt()
+                            return -1
                         }
                         if (!Inventory.contains(ItemID.GLASSBLOWING_PIPE))
                         {
@@ -101,9 +101,8 @@ class GlassBlowerPlugin : LoopedPlugin() {
                             else
                             {
                                 startPlugin = false
-                                return -1
                             }
-                            return sleepDelay().toInt()
+                            return -1
                         }
                         if (!Inventory.contains(ItemID.MOLTEN_GLASS))
                         {
@@ -115,8 +114,8 @@ class GlassBlowerPlugin : LoopedPlugin() {
                             else
                             {
                                 startPlugin = false
-                                return -1
                             }
+                            return -1
                         }
                     }
                     else

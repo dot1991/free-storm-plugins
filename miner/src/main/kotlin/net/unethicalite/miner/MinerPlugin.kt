@@ -97,7 +97,7 @@ class MinerPlugin : LoopedPlugin() {
                 States.DROP_INVENTORY -> {
                     for(Item in Inventory.getAll { it.id == config.rockType().item  || "Uncut" in it.name }){
                         Item.interact("Drop")
-                        Time.sleep(calculation.getRandomIntBetweenRange(25,40).toLong())
+                        Time.sleep(sleepDelay())
                     }
                 }
             }

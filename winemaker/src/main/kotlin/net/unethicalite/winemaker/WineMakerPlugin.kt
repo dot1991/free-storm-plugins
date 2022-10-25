@@ -176,7 +176,10 @@ class WineMakerPlugin : LoopedPlugin() {
         if (configButtonClicked.key.equals("startHelper", ignoreCase = true)) {
             startPlugin = !startPlugin
             MessageUtils.addMessage("Plugin running: $startPlugin")
-            if(startPlugin) chinBreakHandler.startPlugin(this) else chinBreakHandler.stopPlugin(this)
+            if(startPlugin)
+                chinBreakHandler.startPlugin(this)
+            else
+                chinBreakHandler.stopPlugin(this)
         }
     }
 

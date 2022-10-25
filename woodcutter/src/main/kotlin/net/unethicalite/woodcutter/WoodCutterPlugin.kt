@@ -101,7 +101,7 @@ class WoodCutterPlugin : LoopedPlugin() {
                 States.DROP_INVENTORY -> {
                     for(Item in Inventory.getAll { it.id == config.treeType().logId }){
                         Item.interact("Drop")
-                        Time.sleep(calculation.getRandomIntBetweenRange(50,100).toLong())
+                        Time.sleep(sleepDelay())
                     }
                 }
             }
