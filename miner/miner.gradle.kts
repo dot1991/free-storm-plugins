@@ -1,4 +1,4 @@
-version = "0.0.2"
+version = "0.0.3"
 project.extra["PluginName"] = "Miner" // This is the name that is used in the external plugin manager panel
 project.extra["PluginDescription"] = "An automatic Miner" // This is the description that is used in the external plugin manager panel
 
