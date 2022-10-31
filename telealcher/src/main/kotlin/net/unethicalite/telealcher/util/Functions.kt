@@ -27,7 +27,7 @@ class Functions {
         if (!Game.isLoggedIn()) return States.UNKNOWN
         if (chinBreakHandler.shouldBreak(this))
             return States.HANDLE_BREAK
-        if (Players.getLocal().graphic == 113 || (!config.toggleAlch() && Players.getLocal().graphic != 111))
+        if (Players.getLocal().graphic == 113 || Players.getLocal().graphic == 112 || (!config.toggleAlch() && Players.getLocal().graphic != 111))
             return States.TELE
         if (config.toggleAlch() && !Players.getLocal().isAnimating)
             return States.ALCH
