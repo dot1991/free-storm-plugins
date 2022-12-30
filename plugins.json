@@ -1,1 +1,226 @@
-[{"projectUrl":"https://discord.gg/","provider":"subaru","name":"AutoLogHop","description":"Automatically Logout / Hop / Teleport","id":"autologhop-plugin","releases":[{"date":"2022-12-30","sha512sum":"986BC79D0505DF5C338BAF3812D2A25B04AC7B297F77B9F88636F588458663AC266C1A5E1464C26AC8A4C4EA3B38901A6D994494AEFF1BE81B23628BCD6D27C5","version":"0.3.0","url":"https://github.com/blogans/blob/master/release/autologhop-0.3.0.jar?raw=true","requires":"^1.0.0"}]}, {"projectUrl":"https://discord.gg/","provider":"subaru","name":"Cannon Helper","description":"An automatic cannon helper","id":"cannonhelper-plugin","releases":[{"date":"2022-12-30","sha512sum":"E278A6622DE03E051C5A2C2A0B9592EBDC807DC304A37BA8110FDE86C4489E7C93BDC574B99D0E2C01F1C17465EDD26370263DF2625A7B91DAD844DA5F99A016","version":"0.0.3","url":"https://github.com/blogans/blob/master/release/cannonhelper-0.0.3.jar?raw=true","requires":"^1.0.0"}]}, {"projectUrl":"https://discord.gg/","provider":"subaru","name":"Chin break handler","description":"Automatically takes breaks for you (?)","id":"chinbreakhandler-plugin","releases":[{"date":"2022-12-30","sha512sum":"A83D785ED426CC391C0FBDF6597FF2887DBDE3D5993078602D259B00E3031B4DEDF87643A7F41FF303D0E39CD28FC024B9D63EC2AF587E6351AFE5AA42D37625","version":"2.2.0","url":"https://github.com/blogans/blob/master/release/chinbreakhandler-2.2.0.jar?raw=true","requires":"^1.0.0"}]}, {"projectUrl":"https://discord.gg/","provider":"subaru","name":"Gem cutterr","description":"An automatic gem cutter","id":"gemcutterr-plugin","releases":[{"date":"2022-12-30","sha512sum":"FA48AB4FBF935EF71308D57289CBF7CAB96AFC5EF8FF186E7DC669D2DF9886EB69FDE051A13FDFE6D13AC593F418322796EE292FE9A8DE928CA99C6021A00D59","version":"0.0.2","url":"https://github.com/blogans/blob/master/release/gemcutter-0.0.2.jar?raw=true","requires":"^1.0.0"}]}, {"projectUrl":"https://discord.gg/","provider":"subaru","name":"Glass blower","description":"An automatic glass blower","id":"glassblower-plugin","releases":[{"date":"2022-12-30","sha512sum":"066AB1C34196365DFE1CCD98F754E17CE3079A7610BD8CFBED2506E111A46FCD705ADCBFC68997B2312D35E98B5736B655287A9568F6AB8D0AA11F3BD1B75F95","version":"0.0.2","url":"https://github.com/blogans/blob/master/release/glassblower-0.0.2.jar?raw=true","requires":"^1.0.0"}]}, {"projectUrl":"https://discord.gg/","provider":"subaru","name":"Miner","description":"An automatic Miner","id":"miner-plugin","releases":[{"date":"2022-12-30","sha512sum":"65A8E932D4025FA36A6EC3AE9805150E5F5575D0BA6F36578103C7FC987D7B38136CBA449CF2AE30B0F26C5ABA7D8FF503782FA044757F82D28AB856D6EEE5BF","version":"0.0.3","url":"https://github.com/blogans/blob/master/release/miner-0.0.3.jar?raw=true","requires":"^1.0.0"}]}, {"projectUrl":"https://discord.gg/","provider":"subaru","name":"Museum Cleaner","description":"An automatic Museum Cleaner","id":"museumcleaner-plugin","releases":[{"date":"2022-12-30","sha512sum":"52DFF147D524F8C8E5C332EB3F2A4235B17032CF8DDEE44A77D18F91F9307EB1DB4724386E1C85F62F13A1D87082B121F1968846B584131D47C52D315609FAB2","version":"0.0.5","url":"https://github.com/blogans/blob/master/release/museumcleaner-0.0.5.jar?raw=true","requires":"^1.0.0"}]}, {"projectUrl":"https://discord.gg/","provider":"subaru","name":"NMZ Pot drinker","description":"An automatic pot drinker","id":"nmzpotdrinker-plugin","releases":[{"date":"2022-12-30","sha512sum":"D200051B2115AEDEA222177C31E4FA30790C9643C7AAECE7B50463BF326CF68CE8888274368D5D9D633967261836B95615CD145BFFD73DA00C3B16EA4944782C","version":"0.0.1","url":"https://github.com/blogans/blob/master/release/potdrinker-0.0.1.jar?raw=true","requires":"^1.0.0"}]}, {"projectUrl":"https://discord.gg/","provider":"subaru","name":"Prayer Flicker","description":"An automatic prayer flicker","id":"prayerflicker-plugin","releases":[{"date":"2022-12-30","sha512sum":"9E347D8CBADE1DD07EC813E42D4100CA4B251759BE738F9B47AA96053A060973949960553D954D81B83D9A7EAB2970D040AB776D1D8B57D7082CEAFD2ECC7152","version":"0.0.6","url":"https://github.com/blogans/blob/master/release/prayerflicker-0.0.6.jar?raw=true","requires":"^1.0.0"}]}, {"projectUrl":"https://discord.gg/","provider":"subaru","name":"Teleport Alcher","description":"An automatic teleport alcher","id":"teleportalcher-plugin","releases":[{"date":"2022-12-30","sha512sum":"9FAD8328C8331E3A2100F7B8BC1D88B27495F2709CC61A02BB6F9F9E72ACF5EB15FAC5B820CBDC799AD7BB98D3B2B118BB934445721ED0B4CD338F379633C79C","version":"0.0.4","url":"https://github.com/blogans/blob/master/release/telealcher-0.0.4.jar?raw=true","requires":"^1.0.0"}]}, {"projectUrl":"https://discord.gg/","provider":"subaru","name":"Thief","description":"An automatic thief","id":"thief-plugin","releases":[{"date":"2022-12-30","sha512sum":"9CBED66CE04D1A8BFAB88E1D1061C5AA2CCAD7404EA83B042BE23C428225916D4EF85ECD793C90656074E9395FAC90A2CDEAEF11B3D8EBCC8F8E7DA3D88B33B2","version":"0.0.2","url":"https://github.com/blogans/blob/master/release/thief-0.0.2.jar?raw=true","requires":"^1.0.0"}]}, {"projectUrl":"https://discord.gg/","provider":"subaru","name":"Wine Maker","description":"An automatic wine maker","id":"winemaker-plugin","releases":[{"date":"2022-12-30","sha512sum":"46ADC557A51063FB2EA0CFCA0D9D519B093D7EF49693A87BE94CA4633F02EC81B603C7EF833C16AF66581A775A973CF8CA848D4C22D2715BE5D1D6C0CEC4FB39","version":"0.0.2","url":"https://github.com/blogans/blob/master/release/winemaker-0.0.2.jar?raw=true","requires":"^1.0.0"}]}, {"projectUrl":"https://discord.gg/","provider":"subaru","name":"Woodcutter","description":"An automatic woodcutter","id":"woodcutter-plugin","releases":[{"date":"2022-12-30","sha512sum":"D8265229B1276E2BC3E93A88D696C1E9BF1404793B538360388ABD0E9C40279CFFD880FC002E504F45871720D6A762E349307B10EB6680F74268ECC1020DE7AD","version":"0.0.3","url":"https://github.com/blogans/blob/master/release/woodcutter-0.0.3.jar?raw=true","requires":"^1.0.0"}]}, {"projectUrl":"https://discord.gg/","provider":"subaru","name":"Zero Tick combiner (naughty edition)","description":"An automatic 0 tick combiner maker","id":"zerotickcombinernaughtyedition-plugin","releases":[{"date":"2022-12-30","sha512sum":"12CC8CC2A1B5FB4457F439FD09181D79706BCEC08A91F4B4EC529A1516D2560DC0D2472FC26B2D643213A924ED738D0132C49E8B69442D1D29EACB0A132E1497","version":"0.0.1","url":"https://github.com/blogans/blob/master/release/zerotickcombiner-0.0.1.jar?raw=true","requires":"^1.0.0"}]}]
+[
+  {
+    "projectUrl": "https://discord.gg/",
+    "provider": "subaru",
+    "name": "AutoLogHop",
+    "description": "Automatically Logout / Hop / Teleport",
+    "id": "autologhop-plugin",
+    "releases": [
+      {
+        "date": "2022-12-30",
+        "sha512sum": "986BC79D0505DF5C338BAF3812D2A25B04AC7B297F77B9F88636F588458663AC266C1A5E1464C26AC8A4C4EA3B38901A6D994494AEFF1BE81B23628BCD6D27C5",
+        "version": "0.3.0",
+        "url": "https://raw.githubusercontent.com/blogans//master/autologhop-0.3.0.jar",
+        "requires": "^1.0.0"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/",
+    "provider": "subaru",
+    "name": "Cannon Helper",
+    "description": "An automatic cannon helper",
+    "id": "cannonhelper-plugin",
+    "releases": [
+      {
+        "date": "2022-12-30",
+        "sha512sum": "E278A6622DE03E051C5A2C2A0B9592EBDC807DC304A37BA8110FDE86C4489E7C93BDC574B99D0E2C01F1C17465EDD26370263DF2625A7B91DAD844DA5F99A016",
+        "version": "0.0.3",
+        "url": "https://raw.githubusercontent.com/blogans//master/cannonhelper-0.0.3.jar",
+        "requires": "^1.0.0"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/",
+    "provider": "subaru",
+    "name": "Chin break handler",
+    "description": "Automatically takes breaks for you (?)",
+    "id": "chinbreakhandler-plugin",
+    "releases": [
+      {
+        "date": "2022-12-30",
+        "sha512sum": "A83D785ED426CC391C0FBDF6597FF2887DBDE3D5993078602D259B00E3031B4DEDF87643A7F41FF303D0E39CD28FC024B9D63EC2AF587E6351AFE5AA42D37625",
+        "version": "2.2.0",
+        "url": "https://raw.githubusercontent.com/blogans//master/chinbreakhandler-2.2.0.jar",
+        "requires": "^1.0.0"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/",
+    "provider": "subaru",
+    "name": "Gem cutterr",
+    "description": "An automatic gem cutter",
+    "id": "gemcutterr-plugin",
+    "releases": [
+      {
+        "date": "2022-12-30",
+        "sha512sum": "FA48AB4FBF935EF71308D57289CBF7CAB96AFC5EF8FF186E7DC669D2DF9886EB69FDE051A13FDFE6D13AC593F418322796EE292FE9A8DE928CA99C6021A00D59",
+        "version": "0.0.2",
+        "url": "https://raw.githubusercontent.com/blogans//master/gemcutter-0.0.2.jar",
+        "requires": "^1.0.0"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/",
+    "provider": "subaru",
+    "name": "Glass blower",
+    "description": "An automatic glass blower",
+    "id": "glassblower-plugin",
+    "releases": [
+      {
+        "date": "2022-12-30",
+        "sha512sum": "066AB1C34196365DFE1CCD98F754E17CE3079A7610BD8CFBED2506E111A46FCD705ADCBFC68997B2312D35E98B5736B655287A9568F6AB8D0AA11F3BD1B75F95",
+        "version": "0.0.2",
+        "url": "https://raw.githubusercontent.com/blogans//master/glassblower-0.0.2.jar",
+        "requires": "^1.0.0"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/",
+    "provider": "subaru",
+    "name": "Miner",
+    "description": "An automatic Miner",
+    "id": "miner-plugin",
+    "releases": [
+      {
+        "date": "2022-12-30",
+        "sha512sum": "65A8E932D4025FA36A6EC3AE9805150E5F5575D0BA6F36578103C7FC987D7B38136CBA449CF2AE30B0F26C5ABA7D8FF503782FA044757F82D28AB856D6EEE5BF",
+        "version": "0.0.3",
+        "url": "https://raw.githubusercontent.com/blogans//master/miner-0.0.3.jar",
+        "requires": "^1.0.0"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/",
+    "provider": "subaru",
+    "name": "Museum Cleaner",
+    "description": "An automatic Museum Cleaner",
+    "id": "museumcleaner-plugin",
+    "releases": [
+      {
+        "date": "2022-12-30",
+        "sha512sum": "52DFF147D524F8C8E5C332EB3F2A4235B17032CF8DDEE44A77D18F91F9307EB1DB4724386E1C85F62F13A1D87082B121F1968846B584131D47C52D315609FAB2",
+        "version": "0.0.5",
+        "url": "https://raw.githubusercontent.com/blogans//master/museumcleaner-0.0.5.jar",
+        "requires": "^1.0.0"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/",
+    "provider": "subaru",
+    "name": "NMZ Pot drinker",
+    "description": "An automatic pot drinker",
+    "id": "nmzpotdrinker-plugin",
+    "releases": [
+      {
+        "date": "2022-12-30",
+        "sha512sum": "D200051B2115AEDEA222177C31E4FA30790C9643C7AAECE7B50463BF326CF68CE8888274368D5D9D633967261836B95615CD145BFFD73DA00C3B16EA4944782C",
+        "version": "0.0.1",
+        "url": "https://raw.githubusercontent.com/blogans//master/potdrinker-0.0.1.jar",
+        "requires": "^1.0.0"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/",
+    "provider": "subaru",
+    "name": "Prayer Flicker",
+    "description": "An automatic prayer flicker",
+    "id": "prayerflicker-plugin",
+    "releases": [
+      {
+        "date": "2022-12-30",
+        "sha512sum": "9E347D8CBADE1DD07EC813E42D4100CA4B251759BE738F9B47AA96053A060973949960553D954D81B83D9A7EAB2970D040AB776D1D8B57D7082CEAFD2ECC7152",
+        "version": "0.0.6",
+        "url": "https://raw.githubusercontent.com/blogans//master/prayerflicker-0.0.6.jar",
+        "requires": "^1.0.0"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/",
+    "provider": "subaru",
+    "name": "Teleport Alcher",
+    "description": "An automatic teleport alcher",
+    "id": "teleportalcher-plugin",
+    "releases": [
+      {
+        "date": "2022-12-30",
+        "sha512sum": "9FAD8328C8331E3A2100F7B8BC1D88B27495F2709CC61A02BB6F9F9E72ACF5EB15FAC5B820CBDC799AD7BB98D3B2B118BB934445721ED0B4CD338F379633C79C",
+        "version": "0.0.4",
+        "url": "https://raw.githubusercontent.com/blogans//master/telealcher-0.0.4.jar",
+        "requires": "^1.0.0"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/",
+    "provider": "subaru",
+    "name": "Thief",
+    "description": "An automatic thief",
+    "id": "thief-plugin",
+    "releases": [
+      {
+        "date": "2022-12-30",
+        "sha512sum": "9CBED66CE04D1A8BFAB88E1D1061C5AA2CCAD7404EA83B042BE23C428225916D4EF85ECD793C90656074E9395FAC90A2CDEAEF11B3D8EBCC8F8E7DA3D88B33B2",
+        "version": "0.0.2",
+        "url": "https://raw.githubusercontent.com/blogans//master/thief-0.0.2.jar",
+        "requires": "^1.0.0"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/",
+    "provider": "subaru",
+    "name": "Wine Maker",
+    "description": "An automatic wine maker",
+    "id": "winemaker-plugin",
+    "releases": [
+      {
+        "date": "2022-12-30",
+        "sha512sum": "46ADC557A51063FB2EA0CFCA0D9D519B093D7EF49693A87BE94CA4633F02EC81B603C7EF833C16AF66581A775A973CF8CA848D4C22D2715BE5D1D6C0CEC4FB39",
+        "version": "0.0.2",
+        "url": "https://raw.githubusercontent.com/blogans//master/winemaker-0.0.2.jar",
+        "requires": "^1.0.0"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/",
+    "provider": "subaru",
+    "name": "Woodcutter",
+    "description": "An automatic woodcutter",
+    "id": "woodcutter-plugin",
+    "releases": [
+      {
+        "date": "2022-12-30",
+        "sha512sum": "D8265229B1276E2BC3E93A88D696C1E9BF1404793B538360388ABD0E9C40279CFFD880FC002E504F45871720D6A762E349307B10EB6680F74268ECC1020DE7AD",
+        "version": "0.0.3",
+        "url": "https://raw.githubusercontent.com/blogans//master/woodcutter-0.0.3.jar",
+        "requires": "^1.0.0"
+      }
+    ]
+  },
+  {
+    "projectUrl": "https://discord.gg/",
+    "provider": "subaru",
+    "name": "Zero Tick combiner (naughty edition)",
+    "description": "An automatic 0 tick combiner maker",
+    "id": "zerotickcombinernaughtyedition-plugin",
+    "releases": [
+      {
+        "date": "2022-12-30",
+        "sha512sum": "12CC8CC2A1B5FB4457F439FD09181D79706BCEC08A91F4B4EC529A1516D2560DC0D2472FC26B2D643213A924ED738D0132C49E8B69442D1D29EACB0A132E1497",
+        "version": "0.0.1",
+        "url": "https://raw.githubusercontent.com/blogans//master/zerotickcombiner-0.0.1.jar",
+        "requires": "^1.0.0"
+      }
+    ]
+  }
+]
