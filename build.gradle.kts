@@ -13,8 +13,8 @@ plugins {
 }
 
 project.extra["GithubUrl"] = "https://github.com/blogans"
-project.extra["GithubUserName"] = "blogans"
-project.extra["GithubRepoName"] = ""
+project.extra["GithubUserName"] = "Blogans"
+project.extra["GithubRepoName"] = "free-storm-plugins"
 
 apply<BootstrapPlugin>()
 
