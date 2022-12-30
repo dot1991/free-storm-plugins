@@ -1,4 +1,4 @@
-rootProject.name = "horipremium"
+rootProject.name = "free-storm-plugins"
 
 
 include(":cannonhelper")
@@ -12,13 +12,9 @@ include(":glassblower")
 include(":miner")
 include(":gemcutter")
 include(":thief")
-//include(":wardenoverlay")
-include(":hunter")
-//include(":gotrfix")
-//include(":cgfix")
 include(":telealcher")
 include(":potdrinker")
-include(":vorkathplayer")
+include(":autologhop")
 
 for (project in rootProject.children) {
     project.apply {

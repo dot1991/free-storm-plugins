@@ -2,9 +2,9 @@ package net.unethicalite.gemcutter.util
 
 import net.runelite.api.Client
 import net.runelite.api.ItemID
-import net.unethicalite.api.entities.Players
-import net.unethicalite.api.game.Game
-import net.unethicalite.api.items.Inventory
+import net.storm.api.entities.Players
+import net.storm.api.game.Game
+import net.storm.api.items.Inventory
 import net.unethicalite.gemcutter.GemCutterPlugin
 import net.unethicalite.gemcutter.States
 import javax.inject.Inject

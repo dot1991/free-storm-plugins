@@ -2,10 +2,10 @@ package net.unethicalite.telealcher.util
 
 import lombok.Getter
 import net.runelite.api.Skill
-import net.unethicalite.api.game.Skills
-import net.unethicalite.api.magic.Magic
-import net.unethicalite.api.magic.Spell
-import net.unethicalite.api.magic.SpellBook
+import net.storm.api.game.Skills
+import net.storm.api.magic.Magic
+import net.storm.api.magic.Spell
+import net.storm.api.magic.SpellBook
 
 @Getter
 enum class Teleport(val teleport: SpellBook.Standard, val requiredLevel: Int) {

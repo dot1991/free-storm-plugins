@@ -1,10 +1,10 @@
 package net.unethicalite.cannonhelper.util
 
-import net.unethicalite.api.game.Game
-import net.unethicalite.api.game.Prices
-import net.unethicalite.api.items.Inventory
-import net.unethicalite.api.magic.Rune
-import net.unethicalite.api.magic.RunePouch
+import net.storm.api.game.Game
+import net.storm.api.game.Prices
+import net.storm.api.items.Inventory
+import net.storm.api.magic.Rune
+import net.storm.api.magic.RunePouch
 import net.runelite.api.*
 import net.unethicalite.cannonhelper.CannonHelperPlugin
 import javax.inject.Inject

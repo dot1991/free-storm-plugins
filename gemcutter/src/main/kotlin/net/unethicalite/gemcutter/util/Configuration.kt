@@ -3,8 +3,8 @@ package net.unethicalite.gemcutter.util
 import lombok.Getter
 import net.runelite.api.ItemID
 import net.runelite.api.Skill
-import net.unethicalite.api.game.Game
-import net.unethicalite.api.game.Skills
+import net.storm.api.game.Game
+import net.storm.api.game.Skills
 
 
 @Getter

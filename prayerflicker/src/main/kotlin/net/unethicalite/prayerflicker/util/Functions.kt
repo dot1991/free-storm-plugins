@@ -1,8 +1,8 @@
 package net.unethicalite.prayerflicker.util
 
 import net.runelite.api.Client
-import net.unethicalite.api.commons.Time
-import net.unethicalite.client.Static
+import net.storm.api.commons.Time
+import net.storm.client.Static
 import net.unethicalite.prayerflicker.PrayerFlicker
 import java.util.function.BooleanSupplier
 import javax.inject.Inject

@@ -3,10 +3,10 @@ package net.unethicalite.glassblower.util
 import net.runelite.api.Client
 import net.runelite.api.ItemID
 import net.runelite.api.TileObject
-import net.unethicalite.api.entities.Players
-import net.unethicalite.api.entities.TileObjects
-import net.unethicalite.api.game.Game
-import net.unethicalite.api.items.Inventory
+import net.storm.api.entities.Players
+import net.storm.api.entities.TileObjects
+import net.storm.api.game.Game
+import net.storm.api.items.Inventory
 import net.unethicalite.glassblower.GlassBlowerPlugin
 import net.unethicalite.glassblower.States
 import javax.inject.Inject

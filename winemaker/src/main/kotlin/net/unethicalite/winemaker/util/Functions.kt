@@ -1,9 +1,9 @@
 package net.unethicalite.winemaker.util
 
 import net.runelite.api.Client
-import net.unethicalite.api.commons.Time
-import net.unethicalite.api.items.Inventory
-import net.unethicalite.client.Static
+import net.storm.api.commons.Time
+import net.storm.api.items.Inventory
+import net.storm.client.Static
 import net.unethicalite.winemaker.WineMakerPlugin
 import net.unethicalite.winemaker.States
 import java.util.function.BooleanSupplier

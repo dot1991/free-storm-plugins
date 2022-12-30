@@ -1,58 +1,77 @@
-plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.6.10"
-    `java-library`
-}
+import ProjectVersions.stormVersion
 
 buildscript {
     repositories {
-        gradlePluginPortal()
         mavenCentral()
+        gradlePluginPortal()
     }
 }
 
-project.extra["GithubUrl"] = "https://github.com/blogans/unethicalite-plugins"
+plugins {
+    `java-library`
+    kotlin("jvm") version "1.6.21"
+}
+
+project.extra["GithubUrl"] = "https://github.com/blogans"
+project.extra["GithubUserName"] = "blogans"
+project.extra["GithubRepoName"] = ""
 
 apply<BootstrapPlugin>()
 
-subprojects {
-    group = "net.unethicalite.externals"
+allprojects {
+    group = "net.unethicalite"
 
-    project.extra["PluginProvider"] = "Hori"
-    project.extra["ProjectSupportUrl"] = ""
+    project.extra["PluginProvider"] = "subaru"
+    project.extra["ProjectSupportUrl"] = "https://discord.gg/"
     project.extra["PluginLicense"] = "3-Clause BSD License"
 
     apply<JavaPlugin>()
     apply(plugin = "java-library")
     apply(plugin = "kotlin")
-    apply(plugin = "org.jetbrains.kotlin.jvm")
 
     repositories {
         mavenCentral()
         mavenLocal()
-
         maven {
-            url = uri("https://repo.unethicalite.net/releases/")
-            mavenContent {
-                releasesOnly()
-            }
-        }
-        maven {
-            url = uri("https://repo.unethicalite.net/snapshots/")
-            mavenContent {
-                snapshotsOnly()
+            url = uri("https://repo.storm-client.net/dev/")
+            credentials {
+                username = System.getenv("REPO_USERNAME")
+                username = System.getenv("REPO_PASSWORD")
             }
         }
     }
 
     dependencies {
-        implementation("org.jetbrains.kotlin:kotlin-stdlib")
         annotationProcessor(Libraries.lombok)
+        annotationProcessor(Libraries.pf4j)
 
-        compileOnly("net.unethicalite:runelite-api:${ProjectVersions.unethicaliteVersion}+")
-        compileOnly("net.unethicalite:runelite-client:${ProjectVersions.unethicaliteVersion}+")
-        compileOnly("net.unethicalite.rs:runescape-api:${ProjectVersions.unethicaliteVersion}+")
-        compileOnly("net.unethicalite:http-api:${ProjectVersions.unethicaliteVersion}+")
+        annotationProcessor(group = "org.projectlombok", name = "lombok", version = "1.18.20")
+        annotationProcessor(group = "org.pf4j", name = "pf4j", version = "3.6.0")
 
+        compileOnly("net.storm:http-api:${ProjectVersions.stormVersion}")
+        compileOnly("net.storm:runelite-api:${ProjectVersions.stormVersion}")
+        compileOnly("net.storm:runelite-client:${ProjectVersions.stormVersion}")
+
+        compileOnly(group = "com.google.code.gson", name = "gson", version = "2.8.5")
+
+        implementation("org.jetbrains.kotlin:kotlin-stdlib")
+
+        compileOnly(group = "com.squareup.okhttp3", name = "okhttp", version = "3.7.0")
+        compileOnly(group = "org.apache.commons", name = "commons-text", version = "1.2")
+        compileOnly(group = "com.google.code.gson", name = "gson", version = "2.8.5")
+        compileOnly(group = "com.google.inject", name = "guice", version = "5.0.1")
+        compileOnly(group = "io.reactivex.rxjava3", name = "rxjava", version = "3.1.1")
+        compileOnly(group = "org.apache.commons", name = "commons-text", version = "1.9")
+        compileOnly(group = "com.google.guava", name = "guava", version = "30.1.1-jre") {
+            exclude(group = "com.google.code.findbugs", module = "jsr305")
+            exclude(group = "com.google.errorprone", module = "error_prone_annotations")
+            exclude(group = "com.google.j2objc", module = "j2objc-annotations")
+            exclude(group = "org.codehaus.mojo", module = "animal-sniffer-annotations")
+        }
+        compileOnly(group = "com.google.inject", name = "guice", version = "5.0.1")
+        compileOnly(group = "org.projectlombok", name = "lombok", version = "1.18.4")
+        compileOnly(group = "org.pf4j", name = "pf4j", version = "3.6.0")
+        compileOnly(group = "io.reactivex.rxjava3", name = "rxjava", version = "3.1.1")
         compileOnly(Libraries.guice)
         compileOnly(Libraries.javax)
         compileOnly(Libraries.lombok)
@@ -65,25 +84,8 @@ subprojects {
     }
 
     tasks {
-        compileKotlin {
-            kotlinOptions {
-                jvmTarget = "11"
-                freeCompilerArgs = listOf("-Xjvm-default=enable")
-            }
-            sourceCompatibility = "11"
-        }
-
         withType<JavaCompile> {
             options.encoding = "UTF-8"
-        }
-
-        withType<Jar> {
-            doLast {
-                copy {
-                    from("./build/libs/")
-                    into("${System.getProperty("user.home")}/.openosrs/plugins")
-                }
-            }
         }
 
         withType<AbstractArchiveTask> {
@@ -93,14 +95,8 @@ subprojects {
             fileMode = 420
         }
 
-        withType<Checkstyle> {
-            group = "verification"
+        compileKotlin {
+            kotlinOptions.jvmTarget = "11"
         }
-
-        register<Copy>("copyDeps") {
-            into("./build/deps/")
-            from(configurations["runtimeClasspath"])
-        }
-
     }
 }
