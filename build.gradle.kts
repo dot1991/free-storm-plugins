@@ -22,7 +22,7 @@ allprojects {
     group = "net.unethicalite"
 
     project.extra["PluginProvider"] = "subaru"
-    project.extra["ProjectSupportUrl"] = "https://discord.gg/"
+    project.extra["ProjectSupportUrl"] = "https://discord.gg/Subarus-Plugins"
     project.extra["PluginLicense"] = "3-Clause BSD License"
 
     apply<JavaPlugin>()

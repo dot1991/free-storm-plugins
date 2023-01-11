@@ -15,5 +15,6 @@ enum class Teleport(val teleport: SpellBook.Standard, val requiredLevel: Int) {
     CAMELOT(SpellBook.Standard.CAMELOT_TELEPORT, 45),
     ARDOUGNE(SpellBook.Standard.ARDOUGNE_TELEPORT, 51),
     WATCH_TOWER(SpellBook.Standard.WATCHTOWER_TELEPORT, 58),
+    TROLLHEIM(SpellBook.Standard.TROLLHEIM_TELEPORT, 61)
 }
 
