@@ -1,16 +1,19 @@
-# Hori
+# Subaru's Plugins
 
-### Included Plugins 
+### Included Plugins
 
-- Vortath Player
+- AutoLogHop
 - Cannon Helper
+- Gem Cutter
+- Glass Blower
+- Miner
 - Museum Cleaner
-- Chin Break Handler (Fixed)
-- WoodCutter
+- Pot Drinker
+- Prayer Flicker
+- Tele Alcher
+- Thief
 - Wine Maker
-- Zero tick Combiner
-- Glass blower
-- Gem cutter
-- Fruit staller
+- Wood Cutter
+- ZeroTickCombiner
 
-[![Discord Banner 1](https://discordapp.com/api/guilds/957835967052525588/widget.png?style=banner2)](https://discord.gg/Sr7Fecs3gf)
+[![Discord Banner 1](https://discordapp.com/api/guilds/957835967052525588/widget.png?style=banner2)](https://discord.gg/subarus-plugins)
