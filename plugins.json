@@ -146,15 +146,15 @@
   {
     "projectUrl": "https://discord.gg/Subarus-Plugins",
     "provider": "subaru",
-    "name": "Quick Herblore",
-    "description": "An automatic herblore plugin",
-    "id": "quickherblore-plugin",
+    "name": "Quick Herb Cleaner",
+    "description": "An automatic herb cleaning plugin",
+    "id": "quickherbcleaner-plugin",
     "releases": [
       {
         "date": "2023-02-23",
-        "sha512sum": "FDE38D313D974B3CDA9BCC40A87187FE505E6943DFC9DB0797560C4D14A74C5434A6C8E8B123222683FEB14017C20BCD6D10926C11A0E7B29712848C8D19F18F",
+        "sha512sum": "46C699838975C70C3BC1C29EF0FB6E096E36F7247C7E4D30D3CAFF2CD5734216603700141E9A8B58C18D5A8D6BA6CF82328DA903EF4EF05290B64A6044EF5D7F",
         "version": "0.0.2",
-        "url": "https://raw.githubusercontent.com/Blogans/free-storm-plugins/master/release/quickherblore-0.0.2.jar",
+        "url": "https://raw.githubusercontent.com/Blogans/free-storm-plugins/master/release/quickherbcleaner-0.0.2.jar",
         "requires": "^1.0.0"
       }
     ]
