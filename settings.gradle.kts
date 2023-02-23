@@ -15,6 +15,7 @@ include(":thief")
 include(":telealcher")
 include(":potdrinker")
 include(":autologhop")
+include(":quickherblore")
 
 for (project in rootProject.children) {
     project.apply {
