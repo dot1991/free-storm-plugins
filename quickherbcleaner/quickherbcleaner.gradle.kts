@@ -1,6 +1,6 @@
-version = "0.0.4"
-project.extra["PluginName"] = "Teleport Alcher" // This is the name that is used in the external plugin manager panel
-project.extra["PluginDescription"] = "An automatic teleport alcher" // This is the description that is used in the external plugin manager panel
+version = "0.0.2"
+project.extra["PluginName"] = "Quick Herb Cleaner" // This is the name that is used in the external plugin manager panel
+project.extra["PluginDescription"] = "An automatic herb cleaning plugin" // This is the description that is used in the external plugin manager panel
 
 plugins{
     kotlin("kapt")
@@ -16,7 +16,6 @@ tasks {
             jvmTarget = "11"
             freeCompilerArgs = listOf("-Xjvm-default=enable")
         }
-        sourceCompatibility = "11"
     }
     jar {
         manifest {

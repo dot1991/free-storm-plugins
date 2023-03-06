@@ -1,4 +1,4 @@
-package net.unethicalite.telealcher.util
+package net.unethicalite.quickherblore.util
 
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom

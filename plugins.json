@@ -162,22 +162,6 @@
   {
     "projectUrl": "https://discord.gg/Subarus-Plugins",
     "provider": "subaru",
-    "name": "Teleport Alcher",
-    "description": "An automatic teleport alcher",
-    "id": "teleportalcher-plugin",
-    "releases": [
-      {
-        "date": "2023-02-23",
-        "sha512sum": "C1A507DD1D77D83B9C2D04B9ACE443900E8A1A0A43B3E6D28A0C48156616DCA94784D38DB7EA0B2708381B9EF4B252891D55CC4D953EBF5EA1716C521BAD13A1",
-        "version": "0.0.4",
-        "url": "https://raw.githubusercontent.com/Blogans/free-storm-plugins/master/release/telealcher-0.0.4.jar",
-        "requires": "^1.0.0"
-      }
-    ]
-  },
-  {
-    "projectUrl": "https://discord.gg/Subarus-Plugins",
-    "provider": "subaru",
     "name": "Thief",
     "description": "An automatic thief",
     "id": "thief-plugin",
