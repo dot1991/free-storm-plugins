@@ -2,6 +2,7 @@ package net.unethicalite.thief
 
 import com.google.inject.Provides
 import net.runelite.api.*
+import net.runelite.api.coords.WorldPoint
 import net.runelite.api.events.ConfigButtonClicked
 import net.runelite.client.config.ConfigManager
 import net.runelite.client.eventbus.Subscribe
@@ -10,11 +11,18 @@ import net.storm.api.commons.Time
 import net.storm.api.entities.NPCs
 import net.storm.api.entities.Players
 import net.storm.api.entities.TileObjects
+import net.storm.api.game.Game
 import net.storm.api.items.Bank
+import net.storm.api.items.Equipment
 import net.storm.api.items.Inventory
+import net.storm.api.movement.Movement
+import net.storm.api.movement.Reachable
+import net.storm.api.movement.pathfinder.model.BankLocation
 import net.storm.api.plugins.LoopedPlugin
+import net.storm.api.plugins.Plugins
 import net.storm.api.utils.MessageUtils
 import net.storm.api.widgets.Dialog
+import net.storm.api.widgets.Prayers
 import net.storm.client.Static
 import net.unethicalite.thief.util.Calculation
 import net.unethicalite.thief.util.Functions
@@ -45,8 +53,11 @@ class ThiefPlugin : LoopedPlugin() {
     @Inject
     lateinit var chinBreakHandler: ReflectBreakHandler
 
-    var sleepLength: Long = -1
+    @Inject
+    lateinit var configManager: ConfigManager
 
+    var sleepLength: Long = -1
+    var returnCoord: WorldPoint? = null
     private var startTime: Instant = Instant.now()
 
     private val runtime: Duration get() = Duration.between(startTime, Instant.now())
@@ -84,6 +95,35 @@ class ThiefPlugin : LoopedPlugin() {
                     MessageUtils.addMessage("Attempting to break")
                     chinBreakHandler.startBreak(this@ThiefPlugin)
                 }
+                States.BANK -> {
+                    if (Bank.isOpen())
+                    {
+                        if (Inventory.isFull())
+                        {
+                            Bank.depositInventory()
+                        }
+                    }
+                    else
+                    {
+                        var pos = BankLocation.getNearest()
+                        if (isNearBank())
+                        {
+                            openBank()
+                        }
+                        else
+                        {
+                            Movement.walkTo(pos)
+                        }
+                    }
+                    return -1
+                }
+                States.RETURN -> {
+                    if (returnCoord != null)
+                    {
+                        Movement.walkTo(returnCoord)
+                    }
+                    return -2
+                }
                 States.DROP -> {
                     if (config.stall().item.any { it == -1 })
                     {
@@ -109,66 +149,7 @@ class ThiefPlugin : LoopedPlugin() {
                     }
                     return -2
                 }
-                /*States.HANDLE_BANK -> {
-                    if (Bank.isOpen())
-                    {
-                        if (!Inventory.contains { it.id == ItemID.JUG_OF_WINE } || Inventory.getCount(ItemID.JUG_OF_WINE) < 20)
-                        {
-                            return if (Bank.contains { it.id == ItemID.JUG_OF_WINE }) {
-                                Bank.withdraw(ItemID.JUG_OF_WINE, 20 - Inventory.getCount(ItemID.JUG_OF_WINE), Bank.WithdrawMode.ITEM)
-                                -3
-                            } else {
-                                startPlugin = false
-                                -1
-                            }
-                        }
-                        if (!Inventory.contains { it.id == ItemID.DODGY_NECKLACE } || Inventory.getCount(ItemID.DODGY_NECKLACE) < 4)
-                        {
-                            return if (Bank.contains { it.id == ItemID.DODGY_NECKLACE }) {
-                                Bank.withdraw(ItemID.DODGY_NECKLACE, 4 - Inventory.getCount(ItemID.DODGY_NECKLACE), Bank.WithdrawMode.ITEM)
-                                -3
-                            } else {
-                                startPlugin = false
-                                -1
-                            }
-                        }
 
-                    }
-                    else
-                    {
-                        var banker: NPC? = NPCs.getNearest{it.hasAction("Bank")}
-                        banker?.interact("Bank")
-                        Time.sleepUntil({Bank.isOpen()}, 2500)
-                    }
-                }
-                States.STEAL -> {
-                    Dialog.close()
-                    var knight: NPC? = NPCs.getNearest { it.id == config.npcID() && it.distanceTo(Players.getLocal()) <= 7}
-                    knight?.interact("Pickpocket")
-                    return -1
-                }
-                States.EAT_FOOD -> {
-                    Inventory.getFirst { it.id == ItemID.JUG_OF_WINE }?.interact("Drink")
-                    return -1
-                }
-
-                States.EQUIP_NECKLACE -> {
-                    Inventory.getFirst { it.id == ItemID.DODGY_NECKLACE }?.interact("Wear")
-                    return -1
-                }
-
-                States.DROP_JUG -> {
-                    for (Item in Inventory.getAll { it.id == ItemID.JUG })
-                    {
-                        Item.interact("Drop")
-                        Time.sleep(sleepDelay())
-                    }
-                }
-                States.OPEN_POUCH -> {
-                    Inventory.getFirst { "Coin pouch" in it.name }?.interact("Open-all")
-                    return -1
-                }
-                 */
                 States.UNKNOWN -> {
                     //MessageUtils.addMessage("Reached unknown")
                 }
@@ -181,19 +162,70 @@ class ThiefPlugin : LoopedPlugin() {
     private fun reset() {
         sleepLength = -1
         startPlugin = false
+        returnCoord = null
     }
 
     @Subscribe
     private fun onConfigButtonPressed(configButtonClicked: ConfigButtonClicked) {
-        if (!configButtonClicked.group.equals("ThiefConfig", ignoreCase = true) || Static.getClient().gameState != GameState.LOGGED_IN || Players.getLocal() == null) return
-        if (configButtonClicked.key.equals("startHelper", ignoreCase = true)) {
-            startPlugin = !startPlugin
-            MessageUtils.addMessage("Plugin running: $startPlugin")
-            if(startPlugin)
-                chinBreakHandler.startPlugin(this)
-            else
-                chinBreakHandler.stopPlugin(this)
+        if (!configButtonClicked.group.equals("ThiefConfig", ignoreCase = true) || !Game.isLoggedIn() || Players.getLocal() == null) return
+        when (configButtonClicked.key)
+        {
+            "startButton" -> {
+                if (!startPlugin)
+                {
+                    if (config.returnCoord().isNotEmpty() && config.shouldBank())
+                    {
+                        var args = config.returnCoord().split(",")
+                        if (args.size == 3)
+                        {
+                            returnCoord = WorldPoint(args[0].toInt(), args[1].toInt(), args[2].toInt())
+                        }
+                        else
+                        {
+                            MessageUtils.addMessage("Incorrect coordinate format, please empty the box and refetch the return coordinate.")
+                            return
+                        }
+                    }
+                    startPlugin = true
+                    chinBreakHandler.startPlugin(this)
+                }
+                else
+                {
+                    stopPlugin("Stopping plugin")
+                    chinBreakHandler.stopPlugin(this)
+                }
+            }
+            "fetchCoord" -> {
+                configManager.setConfiguration("ThiefConfig", "returnCoord", "${Players.getLocal().worldLocation.x},${Players.getLocal().worldLocation.y},${Players.getLocal().worldLocation.plane}")
+            }
         }
     }
 
+    private fun stopPlugin() {
+        reset()
+        Plugins.stopPlugin(this)
+        stop()
+    }
+
+    private fun stopPlugin(reason: String) {
+        MessageUtils.addMessage("Stopping for reason: $reason")
+        log.info("Stopping for reason: $reason")
+        stopPlugin()
+    }
+
+    fun openBank() {
+        var bank: TileObject? = TileObjects.getSurrounding(Players.getLocal().worldLocation, 15) { (it.hasAction("Bank") || (it.name.lowercase().contains("bank") && it.hasAction("Use"))) }.minByOrNull { it.worldLocation.distanceToHypotenuse(Players.getLocal().worldLocation) }
+
+        if (!Players.getLocal().isMoving) {
+            if (bank != null && Reachable.isInteractable(bank)) {
+                bank.interact(if (bank.hasAction("Use")) "Use" else "Bank")
+            } else {
+                Movement.walkTo(BankLocation.getNearest())
+            }
+        }
+    }
+
+    fun isNearBank(): Boolean {
+        return TileObjects.getFirstSurrounding(BankLocation.getNearest().area.toWorldPoint(), 15) {it.hasAction("Bank") || (it.name.lowercase().contains("bank") && it.hasAction("Collect"))} != null
+    }
 }

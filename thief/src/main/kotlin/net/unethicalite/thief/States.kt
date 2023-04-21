@@ -13,5 +13,7 @@ enum class States {
     UNKNOWN,
     HANDLE_BREAK,
     STEAL,
+    BANK,
+    RETURN,
     DROP
 }

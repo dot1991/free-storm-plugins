@@ -117,7 +117,7 @@ class ZeroTickCombiner : LoopedPlugin() {
                         startPlugin = false
                         return -1
                     }
-                    Time.sleepUntil({Inventory.contains(if(config.makecompost()) ItemID.COMPOST else ItemID.ASHES) && Inventory.contains(if(config.makecompost()) ItemID.SALTPETRE else ItemID.TARROMIN_POTION_UNF)}, 1000)
+                    //Time.sleepUntil({Inventory.contains(if(config.makecompost()) ItemID.COMPOST else ItemID.ASHES) && Inventory.contains(if(config.makecompost()) ItemID.SALTPETRE else ItemID.TARROMIN_POTION_UNF)}, 1000)
                     Bank.close()
                 }
                 else
@@ -143,12 +143,12 @@ class ZeroTickCombiner : LoopedPlugin() {
                     var item1: Item? = Inventory.getItem(i)
                     if(item1 != null){
                         item1.useOn(Inventory.getItem(i + 14))
-                        Time.sleep(50)
+                        Time.sleep(25)
                     }
                 }
             }
 
-            return sleepDelay().toInt()
+            return 0
         }
     }
 

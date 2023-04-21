@@ -78,35 +78,13 @@ interface ThiefConfig : Config {
         return false
     }
 
-    /*@ConfigItem(
-        keyName = "npcID",
-        name = "NPC ID",
-        description = "ID of NPC",
-        position = 11,
-        section = configuration
-    )
-    @JvmDefault
-    fun npcID(): Int {
-        return NpcID.KNIGHT_OF_ARDOUGNE
-    }
-
-    @ConfigItem(
-        keyName = "useDodgy",
-        name = "Use Dodgy necklace",
-        description = "Use dodoge necklaces",
-        position = 12,
-        section = configuration
-    )
-    @JvmDefault
-    fun useDodgy(): Boolean {
-        return true
-    }
-     */
     @ConfigItem(
         keyName = "stall",
         name = "Stall",
         description = "Stall to steal from",
-        position = 11
+        position = 11,
+            title = "stall",
+            section = configuration
     )
     @JvmDefault
     fun stall(): Stall
@@ -115,7 +93,48 @@ interface ThiefConfig : Config {
     }
 
     @ConfigItem(
-        keyName = "startHelper",
+            keyName = "shouldBank",
+            name = "Bank",
+            description = "Enables banking at nearest bank (in api)",
+            position = 12,
+            title = "shouldBank",
+            section = configuration
+    )
+    @JvmDefault
+    fun shouldBank(): Boolean
+    {
+        return false
+    }
+
+
+    @ConfigItem(
+            keyName = "returnCoord",
+            name = "Return coordinate",
+            description = "Return coordinate after moving",
+            position = 13,
+            title = "returnCoord",
+            section = configuration
+    )
+    @JvmDefault
+    fun returnCoord(): String {
+        return ""
+    }
+
+    @ConfigItem(
+            keyName = "fetchCoord",
+            name = "Fetch coord",
+            description = "Fetche current coordinate",
+            position = 14,
+            title = "fetchCoord",
+            section = configuration
+    )
+    @JvmDefault
+    fun fetchCoord(): Button {
+        return Button()
+    }
+
+    @ConfigItem(
+        keyName = "startButton",
         name = "Start / Stop",
         description = "Press button to start / stop plugin",
         position = 20

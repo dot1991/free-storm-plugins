@@ -71,18 +71,28 @@ class Functions {
 
     fun ThiefPlugin.getState(): States {
         if (!Game.isLoggedIn()) return States.UNKNOWN
+
         if (chinBreakHandler.shouldBreak(this))
             return States.HANDLE_BREAK
+
         if (!Inventory.isFull())
         {
             var stall: TileObject? = TileObjects.getNearest(config.stall().normal)
+
+            if (config.shouldBank() && returnCoord != null && Players.getLocal().worldLocation != returnCoord)
+                return States.RETURN
             if (stall != null)
                 return States.STEAL
         }
+
         if (Inventory.isFull())
         {
-            return States.DROP
+            return if (config.shouldBank())
+                States.BANK
+            else
+                States.DROP
         }
+
         return States.UNKNOWN
     }
 

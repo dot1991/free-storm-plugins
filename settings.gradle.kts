@@ -12,7 +12,6 @@ include(":glassblower")
 include(":miner")
 include(":gemcutter")
 include(":thief")
-include(":potdrinker")
 include(":autologhop")
 include(":quickherbcleaner")
 
